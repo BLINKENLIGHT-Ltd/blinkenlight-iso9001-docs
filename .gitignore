@@ -1,0 +1,11 @@
+.keys
+.DS_Store
+*.swp
+*.swo
+*~
+.claude/settings.local.json
+
+# Rendered audit-pack PDFs are derived artefacts; only the source
+# markdown in main is the controlled record. Commit audit-pack output
+# explicitly per audit if a long-term archive is wanted.
+audit-pack/*/tmp/
