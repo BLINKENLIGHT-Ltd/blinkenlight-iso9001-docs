@@ -28,10 +28,13 @@ certification. No time estimates. Phases are ordered by dependency.
    E2 6GH.
 2. **Certification:** UKAS-accredited only. Top candidates to quote:
    NQA, Alcumus ISOQAR, British Assessment Bureau (now Amtivo). See
-   `research/01-certification-bodies.md`.
+   `planning/research/01-certification-bodies.md`.
 3. **Storage:** Git, this repository, hosted on GitHub as a private
-   repository. Auditor access via time-limited read-only collaborator
-   seat. Audit Pack PDFs rendered from `main` HEAD before each audit.
+   repository. QMS lives under `/qms/`; planning and research material
+   under `/planning/` is out of scope. Auditor access (if granted at
+   all) is via time-limited read-only collaborator seat scoped by
+   pre-brief to `/qms/` and `/audit-pack/`. Default exposure is the
+   rendered Audit Pack PDFs from `main` HEAD only.
 4. **Internal-audit objectivity (clause 9.2.2 c):** External internal
    auditor engaged annually. Sole-operator self-audit is not defensible
    under "objectivity and impartiality" and is not used.
@@ -97,8 +100,10 @@ Heavy lifts to flag explicitly inside that document:
   required. Must be populated with real events, including small ones.
   An empty CAPA log is itself a nonconformity at Stage 2.
 
-Output: `gap-analysis.md` at the repo root (or under `research/` if
-preferred), with the table and a "heavy lifts" summary section.
+Output: `planning/gap-analysis.md`, with the table and a "heavy lifts"
+summary section. The gap analysis is itself a planning artefact, not
+a QMS document; it informs which procedures go into `/qms/` in
+Phase 3 but is not controlled.
 
 ## Phase 2 — Decisions to close before drafting begins
 
@@ -110,8 +115,8 @@ Phase 3 and each should be reflected as a closed item in `GAPS.md`.
 Quote at least three UKAS-accredited bodies. Verify accreditation
 status directly against https://www.ukas.com/find-an-organisation/ —
 do not rely on the body's own marketing. See
-`research/01-certification-bodies.md` for the recommended shortlist,
-quotes checklist, and the comparison criteria.
+`planning/research/01-certification-bodies.md` for the recommended
+shortlist, quotes checklist, and the comparison criteria.
 
 Decision criteria, ordered:
 1. UKAS-accredited for ISO 9001:2015 (non-negotiable).
@@ -171,12 +176,12 @@ is the explicit lesson from the AI-boilerplate red-flag literature.
 
 Order of drafting (dependency-ordered):
 
-1. **DOC-CONTROL.md** — the controlled document that explains how Git
-   itself satisfies clause 7.5. Must exist before anything else is
-   controlled, because auditors will read it first to understand the
-   tool.
-2. **MASTER-DOCUMENT-LIST.md** — index, populated as documents are
-   added.
+1. **`/qms/DOC-CONTROL.md`** — the controlled document that explains
+   how Git satisfies clause 7.5 and that defines the `/qms/` scope
+   boundary. Must exist before anything else is controlled, because
+   auditors will read it first to understand the tool and the scope.
+2. **`/qms/MASTER-DOCUMENT-LIST.md`** — index, populated as documents
+   are added.
 3. **Quality Manual** — small. Scope, context, leadership commitment,
    process map. The published scope → design → prove → handover process
    is the spine.
@@ -199,9 +204,10 @@ Order of drafting (dependency-ordered):
    design validation record, supplier evaluation record, calibration
    certificate index entry, CAPA entry, internal-audit report,
    management-review minute, customer-satisfaction record.
-6. **Records spine**: per-engagement folders under `records/`; the
-   live calibration register; the live CAPA log; the live supplier
-   register (or an exported snapshot of InvenTree).
+6. **Records spine**: per-engagement folders under `/qms/records/`;
+   the live calibration register; the live CAPA log; the live
+   supplier register (or an exported snapshot of InvenTree). All
+   under `/qms/` and therefore in scope for the certification.
 
 Operating period: the QMS must be **operated** for at least 3 months
 (some bodies prefer 6) before Stage 1 is bookable. Real records

@@ -10,8 +10,8 @@ should remind Patrick occasionally about anything still open here.
 - [ ] **Certification body chosen.** Quotes obtained from at least
       NQA, Alcumus ISOQAR, and British Assessment Bureau (Amtivo).
       UKAS accreditation verified directly against ukas.com for each
-      before quoting. See `research/01-certification-bodies.md` for
-      the quotes checklist.
+      before quoting. See `planning/research/01-certification-bodies.md`
+      for the quotes checklist.
 - [ ] **External internal auditor engaged.** Annual cadence, IRCA
       (International Register of Certificated Auditors) Lead Auditor
       qualified, independent of the chosen certification body,
@@ -113,8 +113,8 @@ should remind Patrick occasionally about anything still open here.
       (e.g. a self-hosted git server, or a second cloud provider).
 
 - [ ] **Audit Pack render script.** To be written in Phase 3.
-      Produces PDF snapshots of all controlled documents from `main`
-      HEAD into `audit-pack/YYYY-MM-DD/` with metadata footers (ref,
-      version, approval date, approver, commit hash). Pandoc + a
-      simple front-matter reader will do the job. Patrick can review
-      the proposed script before it lands.
+      Produces PDF snapshots of all controlled documents under `/qms/`
+      at `main` HEAD into `/audit-pack/YYYY-MM-DD-<purpose>/` with
+      metadata footers (ref, version, approval date, approver, commit
+      hash). Pandoc + a simple frontmatter reader will do the job.
+      Patrick can review the proposed script before it lands.

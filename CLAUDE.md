@@ -4,10 +4,12 @@ This repository is the working area for BLINKENLIGHT Ltd's ISO 9001:2015
 (International Organisation for Standardisation Quality Management Systems) certification journey.
 
 The full Quality Management System (QMS) — Quality Manual, procedures,
-records, and templates — will live in this repository over time, version-
-controlled in Git, rendered through GitHub's private-repo web UI for auditor
-and reviewer access. Git history itself satisfies clause 7.5 (Control of
-Documented Information) of ISO 9001:2015.
+records, and templates — lives under `/qms/` in this repository,
+version-controlled in Git. Git history itself satisfies clause 7.5
+(Control of Documented Information) of ISO 9001:2015. The scope
+boundary between the controlled QMS and the surrounding planning
+material is described in `/README.md` and enforced by the directory
+layout (see "QMS architecture" and "Auditor exposure model" below).
 
 ## Goal
 
@@ -89,35 +91,69 @@ from this repo.
 - The published engineering process — scope → design → prove → handover —
   is the backbone for clauses 8.1–8.6 and clause 9.
 
-## QMS architecture: Git-on-GitHub
+## QMS architecture: Git-on-GitHub with a hard scope boundary
 
-The QMS lives in this repository:
+The QMS lives at `/qms/` in this repository. Everything outside
+`/qms/` is internal-only material and is not part of the QMS.
 
-- **Source of truth:** markdown files in this Git repository.
-- **Render:** GitHub private-repo web UI. Auditors are granted a
-  time-limited read-only collaborator seat for the audit period.
+- **Source of truth:** markdown files under `/qms/` in this Git
+  repository.
+- **Render:** GitHub private-repo web UI. If the auditor is granted
+  repository access, it is a time-limited read-only collaborator seat
+  scoped (by pre-brief) to `/qms/` and `/audit-pack/`. The scope
+  boundary is described in `/README.md` and in `/qms/DOC-CONTROL.md`.
 - **Approval record:** signed Git commits authored by Patrick. The
-  documented self-approval procedure (to be drafted in `DOC-CONTROL.md`)
-  describes how this satisfies clause 7.5.2.
-- **Master Document List:** `MASTER-DOCUMENT-LIST.md` at the repo root,
-  generated or hand-maintained from per-document frontmatter.
-- **Audit Pack:** rendered PDF snapshots in `audit-pack/YYYY-MM-DD/`,
-  produced from `main` HEAD via a build script before each audit. The
-  PDFs carry document ref, version, approval date, approver, and commit
-  hash in the footer.
-- **Records:** per-engagement folders under `records/<project>/`; the
-  calibration register and CAPA (Corrective and Preventive Action) log
-  live at the repo root as living documents.
+  documented self-approval procedure is drafted in
+  `/qms/DOC-CONTROL.md`, which describes how Git satisfies clause
+  7.5.2.
+- **Master Document List:** `/qms/MASTER-DOCUMENT-LIST.md`, generated
+  or hand-maintained from per-document frontmatter.
+- **Audit Pack:** rendered PDF snapshots in
+  `/audit-pack/YYYY-MM-DD-<purpose>/`, produced from `/qms/` at `main`
+  HEAD via a build script before each external audit and each external
+  internal audit. The PDFs carry document ref, version, approval date,
+  approver, and commit hash in the footer. Snapshots are never
+  modified after generation.
+- **Records:** per-engagement folders under `/qms/records/<project>/`;
+  the calibration register, CAPA (Corrective and Preventive Action)
+  log, and supplier register snapshot live under `/qms/records/` as
+  living documents.
+
+## Auditor exposure model
+
+The default exposure to an external auditor is the rendered Audit
+Pack PDFs only. The auditor never requires raw repository access to
+satisfy ISO 9001:2015.
+
+If the auditor requests repository access:
+
+1. Patrick adds the auditor as a read-only collaborator on the GitHub
+   private repository for the audit period only.
+2. Patrick pre-briefs the auditor: the QMS is `/qms/` and
+   `/audit-pack/`; `/planning/`, `/CLAUDE.md`, and other root files
+   are internal planning material outside the QMS scope.
+3. The scope boundary is reaffirmed in `/qms/DOC-CONTROL.md`, which
+   the auditor reads as the first controlled document.
+4. After the audit window, the read-only seat is revoked.
+
+This pattern is routine: auditors regularly accept folder-level scope
+boundaries when the boundary is stated clearly in the controlling
+document.
 
 ## Navigation
 
-- `PLAN.md` — phased roadmap and open decisions.
-- `GAPS.md` — every piece of real input still needed from Patrick.
-- `research/` — research notes that feed the plan but are not part of
-  the QMS itself (kept for traceability of decisions).
-- Future: `manual/` (Quality Manual), `procedures/`, `records/`,
-  `templates/`, `audit-pack/`, `MASTER-DOCUMENT-LIST.md`,
-  `DOC-CONTROL.md`.
+- `/README.md` — top-level scope statement; first file an auditor or
+  reviewer should read.
+- `/qms/` — the controlled QMS. In scope of the certification. Empty
+  until Phase 3 drafting begins.
+- `/audit-pack/` — rendered PDF snapshots for external audits.
+- `/planning/PLAN.md` — phased roadmap and open decisions.
+- `/planning/GAPS.md` — every piece of real input still needed from
+  Patrick.
+- `/planning/research/` — research notes that feed the plan but are
+  not part of the QMS itself (kept for traceability of decisions).
+- `/CLAUDE.md` — this file; guidance for AI sessions. Not part of the
+  QMS.
 
 ## Working conventions
 
