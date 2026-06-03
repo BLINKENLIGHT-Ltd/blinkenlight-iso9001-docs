@@ -81,8 +81,12 @@ from this repo.
     Automatic Dependent Surveillance — Broadcast (ADS-B) flight
     instrument.
   - Bluespot — 4G/5G broadband antennas.
-- Antenna work for a High-Altitude Pseudo-Satellite (HAPS) aerospace
-  programme. **The end customer must not be named** in any QMS document.
+- Antenna work for the Aalto HAPS (High-Altitude Pseudo-Satellite)
+  aerospace programme (Airbus). The end customer may be referenced in
+  internal QMS documentation. Using the relationship as an
+  auditor-facing or public case study requires written permission from
+  the Aalto HAPS contact (Chris) — tracked in GAPS.md. Keep programme
+  technical details confidential.
 - InvenTree is the existing inventory / purchasing / sales system. It
   feeds the records spine for clauses 8.4 (purchasing & supplier
   control), 8.5.2 (identification & traceability), 8.6 (release of
