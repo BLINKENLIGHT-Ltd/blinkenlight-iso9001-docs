@@ -81,6 +81,77 @@ RF/electronics consultancy with aerospace-adjacent customers:
   prohibits it. The boundary is real; ignore practitioners who claim
   otherwise.
 
+## Quotes received
+
+### Amtivo (British Assessment Bureau) — received 2026-05-21
+
+- **Initial certification:** £2,750 covering both the Stage 1 gap
+  analysis and the Stage 2 audit.
+- **Annual renewal (surveillance / recertification):** 50% of the
+  initial cost, i.e. **£1,375 per year**.
+- **Indicative 3-year total:** £2,750 (Year 0) + £1,375 (Year 1) +
+  £1,375 (Year 2) = **£5,500**, before the Year 3 recertification.
+  On a rolling basis the cost averages ~£1,375/year after the
+  initial assessment.
+- **All-inclusive:** fee includes travel and expenses to Unit 309.
+  No separate travel charge.
+- **Stage 1:** an accredited Stage 1 readiness review, conducted
+  remotely. (This resolves the impartiality question — it is a
+  genuine accredited Stage 1, not a consultancy-style gap analysis,
+  so no ISO/IEC 17021-1 concern.)
+- **Stage 2:** conducted on-site at Unit 309.
+- **Sizing:** Amtivo quoted on the basis of the company's actual size
+  (sole operator) and location. The quote reflects a one-person,
+  one-site operation.
+- **Renewals:** £1,375/year fixed. Whether surveillance audits in
+  later years are on-site or remote is not yet confirmed, but the
+  cost is fixed regardless.
+- **Source:** verbal quote from Amtivo representative, 2026-05-21.
+  `TODO(patrick — obtain the quote in writing for the record).`
+- **Remaining open question:**
+  - Confirm whether Year 1 / Year 2 surveillance audits are on-site
+    or remote (cost is fixed either way, but useful to know for
+    diary planning).
+
+### NQA — `TODO(patrick — awaiting quote)`
+
+### Alcumus ISOQAR — `TODO(patrick — awaiting quote)`
+
+## UKAS verification (2026-05-20)
+
+All three shortlisted bodies were verified directly against
+https://www.ukas.com/find-an-organisation/ on 2026-05-20. Each holds
+current accreditation to ISO/IEC 17021-1:2015 (the meta-standard for
+management-systems certification bodies) and to ISO 9001:2015 with
+sector scopes that cover BLINKENLIGHT's work.
+
+| | NQA Certification Ltd | Alcumus ISOQAR Ltd | British Assessment Bureau Ltd t/a Amtivo |
+|---|---|---|---|
+| UKAS no. | 0015 | 0026 | 8289 |
+| Schedule issue | 194 (05 May 2026) | 159 (30 January 2026) | 039 (24 April 2026) |
+| IAF 19 Electrical and optical equipment | Full | Limited (excludes hazardous-environment / ATEX (Atmosphères Explosibles) / IECEx (International Electrotechnical Commission Explosive) equipment — not engaged by BLINKENLIGHT's scope) | Full |
+| IAF 21 Aerospace | Full | Full | Limited (manufacture, testing, storage, distribution and supply of aircraft components; manufacture of seats — narrower than BLINKENLIGHT would need if it ever wanted IAF 21 in scope) |
+| IAF 33 Information technology | Full | Full | Full |
+| IAF 34 Engineering services | Full | Full | Full |
+| Fit for BLINKENLIGHT's scope (IAF 19 + 33 + 34) | Yes | Yes (Limited carve-out is N/A) | Yes |
+
+Notes:
+
+- BLINKENLIGHT's certified scope will read against IAF 19 (Electrical
+  and optical equipment) and IAF 34 (Engineering services) primarily,
+  optionally IAF 33 (Information technology) if any software is in
+  scope. IAF 21 (Aerospace) is not the right fit for an
+  electronics-design consultancy; aerospace adjacency is the
+  application context for the electronics, not the certified scope
+  of BLINKENLIGHT.
+- Alcumus ISOQAR's IAF 19 "Limited" excludes equipment for use in
+  hazardous environments (ATEX / IECEx) — irrelevant to RF antennas,
+  ADS-B instruments, HAPS payloads, and 4G/5G antennas.
+- NQA reads strongest on the schedule alone for an
+  aerospace-positioned consultancy (clean sweep including Full on
+  IAF 21). Functional fit for BLINKENLIGHT's actual scope is
+  identical across all three.
+
 ## Quotes checklist — to request from each shortlisted body
 
 Include in each request for quotation:

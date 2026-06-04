@@ -167,47 +167,80 @@ instruments. The register itself is a controlled document.
 Indicative cost is £500–£2,000 per year depending on instrument count
 and lab tier. To be quoted alongside the equipment inventory.
 
-## Phase 3 — QMS drafting against real project evidence
+## Phase 3 — QMS drafting
 
-Drafting only begins once Phase 2 decisions are closed. Each procedure
-is drafted against a **real BLINKENLIGHT engagement that exercises the
-clause it satisfies**. No template-first, retrofit-evidence-later. This
-is the explicit lesson from the AI-boilerplate red-flag literature.
+Drafting splits into two streams that move at different speeds.
+Both feed `/qms/` directly with version-numbered documents from
+v1.0 onward. Pending decisions and unknowns become tracked items
+(CAPA log entries, GAPS items, or open-item registers inside the
+documents themselves) rather than blockers to drafting. ISO 9001
+expects the QMS to operate and evolve — version progression in
+`/qms/` is itself evidence the system is alive.
 
-Order of drafting (dependency-ordered):
+### Stream A — System-describing procedures (can start now)
 
-1. **`/qms/DOC-CONTROL.md`** — the controlled document that explains
-   how Git satisfies clause 7.5 and that defines the `/qms/` scope
-   boundary. Must exist before anything else is controlled, because
-   auditors will read it first to understand the tool and the scope.
-2. **`/qms/MASTER-DOCUMENT-LIST.md`** — index, populated as documents
-   are added.
-3. **Quality Manual** — small. Scope, context, leadership commitment,
-   process map. The published scope → design → prove → handover process
-   is the spine.
-4. **Procedures**, one per heavy-lift clause, in this order:
-   - Design and development (8.3) — drafted against a current Paradar
-     or HAPS-programme engagement.
-   - Purchasing & supplier control (8.4) — drafted against the
-     existing InvenTree supplier list.
-   - Monitoring and measuring resources / calibration (7.1.5) —
-     drafted against the actual lab inventory.
-   - Customer satisfaction (9.1.2) — drafted against a real
-     post-engagement debrief.
-   - Nonconformity and corrective action (10.2) — drafted against at
-     least one real prior incident or near-miss.
-   - Internal audit (9.2) — drafted to describe the external internal
-     auditor engagement.
-   - Management review (9.3) — drafted to describe the annual review
-     procedure.
-5. **Templates**: design review minute, design verification record,
-   design validation record, supplier evaluation record, calibration
-   certificate index entry, CAPA entry, internal-audit report,
-   management-review minute, customer-satisfaction record.
-6. **Records spine**: per-engagement folders under `/qms/records/`;
-   the live calibration register; the live CAPA log; the live
-   supplier register (or an exported snapshot of InvenTree). All
-   under `/qms/` and therefore in scope for the certification.
+Procedures that describe systems already in place. Drafting can
+begin in `/qms/` immediately; pending items recorded inline.
+
+- **`/qms/DOC-CONTROL.md`** — the document-control procedure. v1.0
+  approved by Patrick's first signed commit; the bootstrap is
+  self-supporting (every document-control system in history starts
+  this way).
+- **`/qms/MASTER-DOCUMENT-LIST.md`** — index, populated as
+  documents are added.
+- **`/qms/procedures/calibration.md`** — calibration / verification
+  procedure as documented in `planning/equipment-inventory.md`.
+  v1.0 reflects today's reality; pending items (LISN, reference
+  cable register, horn antenna cal basis, SG/SA UKAS quotes) are
+  tracked as open CAPA entries.
+- **`/qms/procedures/internal-audit.md`** — describes the external
+  internal auditor engagement. v1.0 drafted now; auditor's name
+  fills in once engaged.
+- **`/qms/procedures/management-review.md`** — annual review
+  procedure with fixed inputs (audit results, customer feedback,
+  nonconformities, supplier performance, calibration status,
+  resource needs).
+- **`/qms/records/calibration-register.md`** — promoted from
+  `planning/equipment-inventory.md` once DOC-CONTROL.md is in
+  place.
+
+### Stream B — Engagement-dependent procedures (need real evidence)
+
+Procedures whose substance must be drafted against a real
+BLINKENLIGHT engagement that exercises the clause. No template-
+first, retrofit-evidence-later. This is the original
+"evidence-driven not boilerplate" rule and stands.
+
+Each procedure is drafted against a **real engagement that
+exercises the clause it satisfies**:
+
+- **Quality Manual** — small. Scope, context, leadership commitment,
+  process map. The published scope → design → prove → handover
+  process is the spine. Scope statement may be refined to match the
+  chosen certification body's wording preferences.
+- **Design and development (8.3)** — drafted against a current
+  Paradar or HAPS-programme engagement.
+- **Purchasing & supplier control (8.4)** — drafted against the
+  existing InvenTree supplier list, with real recent purchases as
+  exemplar records.
+- **Customer satisfaction (9.1.2)** — drafted against a real
+  post-engagement debrief.
+- **Nonconformity and corrective action (10.2)** — drafted against
+  at least one real prior incident or near-miss. The CAPA log is
+  seeded with 4–8 real historical events spread across 12–24 months
+  (see `planning/GAPS.md` and the CAPA seeding discussion in
+  session notes).
+
+### Records spine and templates (alongside both streams)
+
+- **Templates**: design review minute, design verification record,
+  design validation record, supplier evaluation record, calibration
+  certificate index entry, CAPA entry, internal-audit report,
+  management-review minute, customer-satisfaction record.
+- **Records spine**: per-engagement folders under `/qms/records/`;
+  the live calibration register; the live CAPA log; the live
+  supplier register (or an exported snapshot of InvenTree). All
+  under `/qms/` and therefore in scope for the certification.
 
 Operating period: the QMS must be **operated** for at least 3 months
 (some bodies prefer 6) before Stage 1 is bookable. Real records

@@ -5,7 +5,25 @@
 *~
 .claude/settings.local.json
 
+# DXComm / CommTrack engagement dossier — internal distillation of
+# confidential (incl. defence-adjacent) engagement material. Held locally
+# for QMS reference; not committed.
+/planning/dxcomm-engagement/
+/planning/dxcomm-commtrack-engagement-timeline.md
+
 # Rendered audit-pack PDFs are derived artefacts; only the source
 # markdown in main is the controlled record. Commit audit-pack output
 # explicitly per audit if a long-term archive is wanted.
 audit-pack/*/tmp/
+
+# Raw confidential email exports dropped into the working tree for
+# processing only. Never commit — the system of record is Front; the
+# distilled records live in planning/dxcomm-engagement/.
+/app.frontapp.com_print_conversations_*.pdf
+
+# Customer property (confidential third-party material) is held under
+# QP-12 control but NOT committed — it must remain returnable/destroyable
+# per QP-12 §7, which Git history would prevent. The folder is kept (via
+# .gitkeep); the engagement README records receipt and handling.
+qms/records/engagements/*/00-customer-property/*
+!qms/records/engagements/*/00-customer-property/.gitkeep

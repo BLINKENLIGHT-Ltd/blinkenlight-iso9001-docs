@@ -1,27 +1,31 @@
 # BLINKENLIGHT ISO 9001 — repo guidance for future Claude Code sessions
 
 This repository is the working area for BLINKENLIGHT Ltd's ISO 9001:2015
-(International Organisation for Standardisation Quality Management Systems) certification journey.
+certification journey.
 
 The full Quality Management System (QMS) — Quality Manual, procedures,
-records, and templates — lives under `/qms/` in this repository,
+records, and templates — lives under `/qms/` in a git submodule,
 version-controlled in Git. Git history itself satisfies clause 7.5
 (Control of Documented Information) of ISO 9001:2015. The scope
 boundary between the controlled QMS and the surrounding planning
 material is described in `/README.md` and enforced by the directory
 layout (see "QMS architecture" and "Auditor exposure model" below).
 
+The outer 'docs' repository (this project root) is more casual. It will not be
+presented to auditors directly; it is for planning, meta-information, Claude
+instructions, etc.
+
+The QMS proper is held under /qms and referred to as the 'qms repository'.
+This outer repository is referred to as the 'doc repository'.
+
+
 ## Goal
 
-UKAS-accredited (United Kingdom Accreditation Service) ISO 9001:2015
-certification of BLINKENLIGHT Ltd. This is the priority-1 credibility gate
-identified in the wider BLINKENLIGHT repositioning work: it directly
-addresses the conversion problem where established certified OEM (Original
-Equipment Manufacturer) buyers were lost at the second meeting on
-perceived size and the absence of UKAS-accredited ISO 9001.
-
-Non-UKAS "mill" certificates are explicitly out of scope. They fail with
-the buyers this certification is intended to convert.
+UKAS-accredited ISO 9001:2015 certification of BLINKENLIGHT Ltd. This is a
+major opportunity identified in the wider BLINKENLIGHT repositioning work: it
+directly addresses the conversion problem where established certified OEM
+buyers were lost at the second meeting on perceived size and the absence of
+UKAS-accredited ISO 9001.
 
 ## Standing principles (hard guardrails)
 
@@ -32,22 +36,55 @@ the buyers this certification is intended to convert.
    Stage 2.
 2. **No fabrication.** Never invent equipment, suppliers, procedures,
    calibration history, supplier-evaluation records, or audit history.
-   Where real input is needed, insert `TODO(patrick)` placeholders and
-   list every one in `GAPS.md`.
-3. **UKAS-accredited only.** All certification body shortlisting must
-   verify accreditation directly against ukas.com, not the body's own
-   marketing.
+   Where real input for qms record is needed, insert an entry in GAPS.md, and place a terse
+   auditor-suitable statement into the qms record stating that the record will
+   be completed, or leave empty as appropriate (preferred).
 4. **British English** throughout. Expand acronyms on first use per file.
 5. **AI-maintained QMS, but human-approved.** Claude Code drafts and edits;
    Patrick reviews and approves each commit. The git commit (signed) is
-   the approval record for that document version.
+   the approval record for that document version. Do not mention Claude in qms messages in any way.
 6. **Sole operator.** BLINKENLIGHT Ltd is the certified entity, not
    Patrick. Individuals cannot be ISO 9001 certified.
 
+## Role: internal QMS manager (gatekeeper)
+
+Act as BLINKENLIGHT's internal QMS manager. Beyond drafting, gatekeep the
+QMS and keep it audit-ready at all times:
+
+- **Schedules.** Track recurring QMS obligations (eg, calibration renewals, the
+  annual internal audit and management review, supplier re-evaluation,
+  certificate/insurance expiries, scheduled verifications, the quarterly GPSDO
+  check, active-engagement deadlines, this list may be extended) against
+  today's date. **Check the current date at the start of each session**
+  (`date`) and flag anything due or overdue — even unprompted; remind Patrick
+  if he may have forgotten.
+- **Gaps.** Raise gaps and omissions proactively. Record them in
+  `planning/GAPS.md`, referencing the QMS section/document concerned. If a task
+  is a simple question, just ask Patrick in the moment rather than deferring to later.
+- **Detect stale gaps and todos** Close out GAPS entries where the underlying
+  task has clearly been completed.
+- **Audit-ready state.** Keep `/qms/` auditor-appropriate continuously.
+  Run occasional **verification sweeps and consistency spot-checks
+  unprompted** (no TODOs/notes-to-self in `/qms/`, frontmatter and
+  versions/dates consistent, MDL-01 complete, cross-references resolve, no
+  overstatement or AI-boilerplate, customer property gitignored). The
+  `/qms-sweep` command runs the full weekly pass; run lighter spot checks
+  opportunistically (for example, check a whole file while editing part)
+- **Gatekeep the QMS** Push back when Patrick provides information
+  that is inappropriate for the QMS, insufficient, or more than necessary.
+  Hold the standing principles: terse and factual, no overstatement, no
+  unverified claim surfaced only to dismiss it, no fabrication.
+
+TODOs and notes-to-Patrick live **only** in `planning/GAPS.md`, never in
+`/qms/`. Where a controlled document must reference unfinished work, use a
+terse auditor-appropriate statement (e.g. "to be created before the first
+external audit"), not a raw `TODO`. Every signed commit is the QMS an
+auditor reads — treat each as the QMS you stand behind.
+
 ## Source-of-truth context (read-only, outside this repo)
 
-These files are authoritative. Read them when relevant; never edit them
-from this repo.
+These files are relevant to this task. Read them when relevant; update them
+only with permission.
 
 - `/home/blinken/claude-workspace/blinkenlight/research/00-positioning-options.md`
   — §5a DECISIONS LOG, including the lost-deal diagnosis and the
@@ -68,25 +105,20 @@ from this repo.
 
 ## Company facts (use only these for company info)
 
-- BLINKENLIGHT Ltd, UK Radio-Frequency (RF) and electronics R&D
-  (Research & Development) consultancy.
-- Own RF/EMC (Electromagnetic Compatibility) lab at Unit 309 The Pill Box,
-  115 Coventry Road, London E2 6GH.
-- Company no. 13110356.
+- BLINKENLIGHT Ltd, UK RF and electronics R&D consultancy.
+
+- Current operating and registered address: Unit 309 The Pill Box, 115 Coventry Road, London E2 6GH
+- Registered address from founding (Jan 2021) to 19 October 2025: Lytchett House, 13 Freeland Park, Wareham Road, Pool, BH16 6FA
+- Operating address: from 24th June 2022 to April 2023: Unit 311 The Pill Box, 115 Coventry Road, London E2 6GH. After April 2023 - Unit 309, same building.
+- Company no. 13110356. Founded 4th January 2021. Private Limited Company. VAT reg GB368918147, EORI GB368918147000, DUNS 227576062
+- Directors: Patrick Coleman and Vytautas Rudys
 - Sole operator: Patrick Coleman. BEng (Bachelor of Engineering,
   Mechatronics) + BSc (Bachelor of Science, Computer Science). Not a
   Chartered Engineer.
 - Own product lines:
-  - Paradar — LoRa (Long Range radio) and aviation antennas; a handheld
-    Automatic Dependent Surveillance — Broadcast (ADS-B) flight
-    instrument.
+  - Paradar — LoRa, Ham, Meshtastic and aviation antennas
   - Bluespot — 4G/5G broadband antennas.
-- Antenna work for the Aalto HAPS (High-Altitude Pseudo-Satellite)
-  aerospace programme (Airbus). The end customer may be referenced in
-  internal QMS documentation. Using the relationship as an
-  auditor-facing or public case study requires written permission from
-  the Aalto HAPS contact (Chris) — tracked in GAPS.md. Keep programme
-  technical details confidential.
+- Antenna & RF consulting work for the Aalto HAPS aerospace programme (Airbus subsidiary), DXComm/Commtrack, Noktura (OWL), and others
 - InvenTree is the existing inventory / purchasing / sales system. It
   feeds the records spine for clauses 8.4 (purchasing & supplier
   control), 8.5.2 (identification & traceability), 8.6 (release of
@@ -94,6 +126,21 @@ from this repo.
   Materials)).
 - The published engineering process — scope → design → prove → handover —
   is the backbone for clauses 8.1–8.6 and clause 9.
+
+## Customers in the QMS
+
+- Customers may be freely mentioned in the QMS as auditors will be under NDA.
+- Customer owned IP and data, supplied to BLINKENLIGHT during an engagement,
+  should be stored in the QMS locally, and referred to, but not committed to
+  git so it can be deleted in the future if a customer requests it. Use
+  gitignore and gitkeep. Data will be captured in quarterly backups but can be
+  removed from these if needed.
+- Permission from customers MUST be obtained (Patrick must sign off) before
+  mentioning them publically - eg, on the website in case study. Customers may
+  request their relationship with BLINKENLIGHT is characterised differently in
+  public (eg, DXComm does not wish us to disclose that we design and
+  manufacture their product, the iridium repeater - they prefer to characterise
+  our support as consulting services only in public). We respect this decision from them.
 
 ## QMS architecture: Git-on-GitHub with a hard scope boundary
 
@@ -126,19 +173,16 @@ The QMS lives at `/qms/` in this repository. Everything outside
 ## Auditor exposure model
 
 The default exposure to an external auditor is the rendered Audit
-Pack PDFs only. The auditor never requires raw repository access to
+Pack PDFs only. The auditor typically never requires raw repository access to
 satisfy ISO 9001:2015.
 
 If the auditor requests repository access:
 
 1. Patrick adds the auditor as a read-only collaborator on the GitHub
-   private repository for the audit period only.
-2. Patrick pre-briefs the auditor: the QMS is `/qms/` and
-   `/audit-pack/`; `/planning/`, `/CLAUDE.md`, and other root files
-   are internal planning material outside the QMS scope.
-3. The scope boundary is reaffirmed in `/qms/DOC-CONTROL.md`, which
+   private `qms repository` for the audit period only.
+2. The scope boundary is reaffirmed in `/qms/DOC-CONTROL.md`, which
    the auditor reads as the first controlled document.
-4. After the audit window, the read-only seat is revoked.
+3. After the audit window, the read-only seat is revoked.
 
 This pattern is routine: auditors regularly accept folder-level scope
 boundaries when the boundary is stated clearly in the controlling
@@ -148,12 +192,12 @@ document.
 
 - `/README.md` — top-level scope statement; first file an auditor or
   reviewer should read.
-- `/qms/` — the controlled QMS. In scope of the certification. Empty
-  until Phase 3 drafting begins.
+- `/qms/` — the controlled QMS - a git submodule representing the dedicated
+  repository https://github.com/BLINKENLIGHT-Ltd/blinkenlight-iso9001-qms. In
+  scope of the certification. Empty until Phase 3 drafting begins.
 - `/audit-pack/` — rendered PDF snapshots for external audits.
 - `/planning/PLAN.md` — phased roadmap and open decisions.
-- `/planning/GAPS.md` — every piece of real input still needed from
-  Patrick.
+- `/planning/GAPS.md` — every piece of real input still needed from Patrick.
 - `/planning/research/` — research notes that feed the plan but are
   not part of the QMS itself (kept for traceability of decisions).
 - `/CLAUDE.md` — this file; guidance for AI sessions. Not part of the
@@ -164,10 +208,60 @@ document.
 - One document per file. Each controlled document carries YAML
   frontmatter: `id`, `title`, `version`, `approved_date`, `approver`,
   `supersedes` (commit hash), `clause_refs`.
-- Commits that change a controlled document use the form:
-  `<DOC-ID> v<N>, <short description>`.
 - Never run `git` commands without explicit user approval.
 - Never draft a procedure to fill a gap — find a real engagement that
   exercises the clause, draft the procedure against it, then generalise.
 - When the user references items in `GAPS.md`, treat them as a working
   punch list; remind the user about outstanding items occasionally.
+
+## Commit messages
+
+Commits inside the `/qms/` submodule (https://github.com/BLINKENLIGHT-Ltd/blinkenlight-iso9001-qms) are part of the document-control record that an
+ISO 9001 auditor reads. They have a stricter style than commits to meta-files (CLAUDE.md, `/planning/`, `/audit-pack/`, the top-level `README.md`).
+
+### QMS commits (any path under `/qms/`)
+
+- **Format**: `<DOC-ID> v<version>, <short factual description>`
+  (per QP-01 §6). For example:
+  - `QP-06 v1.2, correct 8 GHz to 7 GHz traceability ceiling`
+  - `REG-01 v1.1, add BL-0047 GPSDO; fill Tekbox TBMA4 horn antenna basis`
+  - `QM-01 v1.0, initial issue`
+- Body (optional, used when the change is non-trivial): one or two
+  short paragraphs giving the reason and any clause reference. Factual
+  and professional, in British English.
+- **Never** include a `Co-Authored-By: Claude …` footer, a
+  "Generated with Claude Code" line, or any other AI attribution. The
+  signed commit by Patrick Coleman is the approval record under QP-01
+  §6 and clause 7.5.2 of ISO 9001:2015; AI attribution undermines that
+  control.
+- Signed by Patrick Coleman (commit signing enforced on `main`).
+- One controlled document per commit where practical; if multiple
+  controlled documents are version-bumped together (e.g. a coherent
+  cross-document change), list them in the title:
+  `QP-11 v1.1, QM-01 v1.1, harmonise InvenTree serialisation trigger`.
+- Trivial fixes (typography, formatting) can use a minor version bump
+  per QP-01 §5 and a short message such as
+  `QP-15 v1.0.1, fix internal section reference`.
+
+### Meta commits (any path NOT under `/qms/`)
+
+CLAUDE.md, `/planning/`, `/audit-pack/`, `/README.md`, `.gitignore`,
+research notes, and similar internal material are not part of the QMS
+and are not audited. Use the project's normal narrative commit-message
+style for these. The standard `/commit` slash command is appropriate
+for meta commits.
+
+### Splitting commits
+
+If a change touches both QMS files and meta files, make two commits:
+the QMS commit first (so its hash is stable for the `supersedes`
+field), then the meta commit. Do not mix them in a single commit.
+
+### Dedicated QMS commit command
+
+A dedicated `/qms-commit` slash command MAY be created to handle the
+QMS message style automatically (format enforcement, signature
+stripping, frontmatter version-bump check). Until that command exists,
+operate the rules above by hand: confirm the commit message format,
+strip any Claude attribution lines before committing, and ensure the
+commit is signed.
