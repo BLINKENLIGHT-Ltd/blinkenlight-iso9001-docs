@@ -176,14 +176,11 @@ should remind Patrick occasionally about anything still open here.
 
 ## New asset — BL-0051 (added 2026-07-05)
 
-- [ ] **Log BL-0051 in REG-01 (out-of-scope asset).** New Xero fixed asset:
-      Dell PowerEdge R740XD rack server, "EM Solver workstation", serial
-      CVJS6Z2, purchased 2026-06-23 (£5,340), warranty to 2029-06-23. Not a
-      measuring instrument — no calibration. Add to REG-01 "Out of scope —
-      not measurement instruments (no label required)" for Xero asset-tag
-      alignment, alongside BL-0010. Proposed row:
-      `| BL-0051 | Dell PowerEdge R740XD rack server (EM-simulation compute; serial CVJS6Z2) | IT / compute infrastructure. |`
-      Needs a REG-01 version bump + signed commit.
+- [x] **Log BL-0051 in REG-01 (out-of-scope asset).** Done 2026-07-05 —
+      REG-01 v1.1 adds BL-0051 (Dell PowerEdge R740XD, electromagnetic-
+      simulation compute, serial CVJS6Z2) to the out-of-scope,
+      non-measurement asset list. Not a measuring instrument; no
+      calibration.
 - [ ] **EM-simulation confidence (if used as design evidence).** If EM-solver
       results are ever cited as design-verification evidence (clause 8.3.4),
       add a short line to QP-15 on confidence in simulation (e.g. validation
@@ -312,16 +309,17 @@ within the next week or so, to match the documents.
       REG-02 R-08 (fire, theft, physical damage, equipment loss, no
       backup lab). File the updated Hiscox certificates in
       `/qms/records/insurance/` and update R-08 once in place.
-- [~] **Hiscox PI / liability — policy period confirmed; README + REG-02
-      update outstanding.** Confirmed 2026-07-05: the Hiscox policy on file
-      runs **10/11/2025 to 09/11/2026 inclusive — in date**; next renewal
-      **2026-11-09** (now on the QMS schedule). Remaining: add a short
-      `records/insurance/README.md` mirroring the cyber-essentials one
-      (policy numbers, cover limits, period, renewal, broker), and add the
-      2026-11-09 expiry to REG-02 R-08 (currently gives no expiry). The 2025
-      certificate filenames (`records/insurance/hiscox-*_2025.pdf`) predate
-      the current period; re-file or note that the on-file PDFs are the
-      current 10/11/2025–09/11/2026 policies.
+- [x] **Hiscox PI / liability — policy recorded.** Done 2026-07-05.
+      Single Hiscox policy PL-PSC10003370426/02, period 10/11/2025 to
+      09/11/2026 (in date), next renewal **2026-11-09** (now on the QMS
+      schedule); PI £1,000,000, public/products liability £5,000,000.
+      `records/insurance/README.md` created and REG-02 R-08 updated (v1.1).
+      Filename-year note captured in the README.
+      - [ ] **Hiscox — correct registered address at renewal.** The public/
+            products liability certificate still shows the former Poole
+            registered office (Unit 13 Freeland Park, BH16 6FA); the company
+            moved to Unit 309 The Pill Box on 19 October 2025. Ask Hiscox to
+            reissue against the current address at the 2026-11-09 renewal.
 - [x] **Cyber Essentials renewal.** Completed 2026-05-22 (certificate
       7c7148de-…, profile 3.3 Danzell, whole-organisation scope; partner
       IASME, certification body World Computing). Held at
