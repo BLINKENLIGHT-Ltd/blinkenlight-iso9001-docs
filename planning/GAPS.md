@@ -81,11 +81,11 @@ should remind Patrick occasionally about anything still open here.
       2000. Label wording in use: "FOR INDICATION ONLY — CALIBRATION
       NOT REQUIRED". REG-01 and QP-06 §8 updated to match.
 
-- [ ] **Anritsu MS2665C — request UKAS calibration quote.** Anritsu
-      Service UK, Calibrate.co.uk, and Trescal UK as starting points.
-      Confirm each lab's UKAS schedule covers spectrum analyser
-      calibration to ≥21.2 GHz before sending. Indicative UKAS cost:
-      £500–£1,200 per cycle. Postal calibration is acceptable.
+- [~] **Anritsu MS2665C (BL-0013) — sent for UKAS calibration; in
+      progress.** Dispatched to the cal lab; as at 2026-07-05 still being
+      processed. On return, file the cert under `qms/records/calibration/`
+      and update REG-01 BL-0013 (basis moves from "verification now; UKAS
+      planned" to calibrated: cert no., date, expiry, cadence).
 
 - [ ] **R&S SML 03 — request UKAS calibration quote.** Rohde &
       Schwarz UK (manufacturer service), Calibrate.co.uk, or Trescal
@@ -116,13 +116,13 @@ should remind Patrick occasionally about anything still open here.
       enclosures are RF-isolation enclosures rather than anechoic
       (RF-absorbing); confirm no other anechoic chamber is in use.
 
-- [ ] **HP 34401A multimeter (BL-0016) — re-calibration urgent.**
-      Calibration expired 2024-11-22. Currently quarantined from
-      controlled use under QP-06 §7 with the "OUT OF CAL" label
-      applied. Book re-calibration with a UKAS-accredited cal lab,
-      file the new cert in `qms/records/calibration/`, and update
-      REG-01 once renewed. No controlled measurements have been made
-      on this instrument since cal expiry.
+- [~] **HP 34401A multimeter (BL-0016) — sent for re-calibration; in
+      progress.** Calibration expired 2024-11-22; quarantined under QP-06 §7
+      with the "OUT OF CAL" label. Now dispatched to a cal lab; as at
+      2026-07-05 still being processed. On return, file the new cert in
+      `qms/records/calibration/`, move BL-0016 out of the quarantine table in
+      REG-01 into the in-scope table with cert no./date/expiry, and remove the
+      OUT OF CAL label. No controlled measurements made on it since cal expiry.
 
 - [x] **GPSDO asset tag.** BL-0047 (Leo Bodnar Precision GPS Reference
       Clock, no serial). Confirmed and recorded in REG-01 2026-06-03.
@@ -174,6 +174,26 @@ should remind Patrick occasionally about anything still open here.
       2026-06-03). The two companies' asset registers are distinct;
       REG-01 lists BLINKENLIGHT instruments only.
 
+## New asset — BL-0051 (added 2026-07-05)
+
+- [ ] **Log BL-0051 in REG-01 (out-of-scope asset).** New Xero fixed asset:
+      Dell PowerEdge R740XD rack server, "EM Solver workstation", serial
+      CVJS6Z2, purchased 2026-06-23 (£5,340), warranty to 2029-06-23. Not a
+      measuring instrument — no calibration. Add to REG-01 "Out of scope —
+      not measurement instruments (no label required)" for Xero asset-tag
+      alignment, alongside BL-0010. Proposed row:
+      `| BL-0051 | Dell PowerEdge R740XD rack server (EM-simulation compute; serial CVJS6Z2) | IT / compute infrastructure. |`
+      Needs a REG-01 version bump + signed commit.
+- [ ] **EM-simulation confidence (if used as design evidence).** If EM-solver
+      results are ever cited as design-verification evidence (clause 8.3.4),
+      add a short line to QP-15 on confidence in simulation (e.g. validation
+      of solver results against measurement). Not required while results are
+      design-exploration only.
+- [ ] **Customer property on BL-0051 (QP-12).** If the server holds customer
+      design packages/CAD for EM simulation, confirm that material is handled
+      under QP-12 (identified, segregated, not committed to Git). Within the
+      whole-organisation Cyber Essentials scope already.
+
 ## Calibration follow-ups (added 2026-06-02)
 
 - [x] **SOL cal kit — renewal calibration scheduled.** Booked with
@@ -181,6 +201,17 @@ should remind Patrick occasionally about anything still open here.
       complete before the current cert (K1397) expires on 2026-06-26.
       File the new cert under `qms/records/calibration/` and update
       REG-01 INS-05 on receipt.
+- [~] **SOL cal kit (BL-0024) — at Kirkby, renewal in progress; file new
+      cert and update REG-01 on return.** Cert K1397 expired **2026-06-26**.
+      Kit was sent to Kirkby Microwave for renewal (booked wk of 2026-06-08);
+      as at 2026-07-05 **still being processed — running longer than planned;
+      Patrick chasing.** While away the kit is out of cal, so the VNA
+      (BL-0029) verification chain, the Tekbox attenuator verification
+      (BL-0023) and the cable checks (BL-0049/50) cannot be evidenced, and
+      controlled measurements for the Aalto build (target delivery
+      2026-07-13) are on hold until it returns. On return: file the new
+      certificate under `qms/records/calibration/` and update REG-01 BL-0024
+      (cert no., issue date, new expiry) and the §Notes traceability chain.
 - [ ] **Kirkby Microwave — narrow traceability follow-up (option C).**
       Kirkby replied 2026-06-03 declining a UKAS-grade traceability
       statement: its reference standards receive a standard (non-UKAS)
@@ -281,6 +312,16 @@ within the next week or so, to match the documents.
       REG-02 R-08 (fire, theft, physical damage, equipment loss, no
       backup lab). File the updated Hiscox certificates in
       `/qms/records/insurance/` and update R-08 once in place.
+- [~] **Hiscox PI / liability — policy period confirmed; README + REG-02
+      update outstanding.** Confirmed 2026-07-05: the Hiscox policy on file
+      runs **10/11/2025 to 09/11/2026 inclusive — in date**; next renewal
+      **2026-11-09** (now on the QMS schedule). Remaining: add a short
+      `records/insurance/README.md` mirroring the cyber-essentials one
+      (policy numbers, cover limits, period, renewal, broker), and add the
+      2026-11-09 expiry to REG-02 R-08 (currently gives no expiry). The 2025
+      certificate filenames (`records/insurance/hiscox-*_2025.pdf`) predate
+      the current period; re-file or note that the on-file PDFs are the
+      current 10/11/2025–09/11/2026 policies.
 - [x] **Cyber Essentials renewal.** Completed 2026-05-22 (certificate
       7c7148de-…, profile 3.3 Danzell, whole-organisation scope; partner
       IASME, certification body World Computing). Held at
@@ -433,6 +474,21 @@ belonging to customers / external providers) in one set of documents.
       copy (website, capability statements, proposals) currently
       complies and that a switch-over copy is drafted ready for the
       day the certificate arrives.
+
+## Preservation / ESD (added 2026-06-04)
+
+- [ ] **Document ESD (electrostatic discharge) handling controls.**
+      Surfaced while reviewing a client pitch deck that claims "ESD
+      controls protect components during handling and testing". The
+      practice is real — ESD-safe workbench plus handling routine — but
+      nothing in the QMS documents it, so the claim is currently
+      unsupported if a customer (or auditor) probes it. Draft a short
+      preservation/handling procedure under clause 8.5.4 covering: the
+      ESD-safe bench and its grounding, wrist-strap / handling routine,
+      storage of ESD-sensitive parts, and any periodic check of the
+      bench. Real, low-cost evidence for 8.5.4 — good clause to hold
+      genuine practice against. Either a standalone QP or a section
+      added to an existing preservation/handling procedure.
 
 ## Logistics
 
