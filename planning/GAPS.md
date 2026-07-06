@@ -320,6 +320,20 @@ within the next week or so, to match the documents.
             registered office (Unit 13 Freeland Park, BH16 6FA); the company
             moved to Unit 309 The Pill Box on 19 October 2025. Ask Hiscox to
             reissue against the current address at the 2026-11-09 renewal.
+      - [ ] **Hiscox — review PI limit at renewal.** PI cover is currently
+            £1,000,000. Core revenue is design/R&D advice for aerospace/RF
+            clients (Aalto/Airbus, DXComm/Commtrack), the exact exposure PI
+            covers and where a negligent-design claim can exceed £1M. Check
+            each client contract (and the canonical Terms of Business) for a
+            stated PI minimum; consider raising to £2M at the 2026-11-09
+            renewal. Public/products liability at £5M is adequate; no change.
+      - [ ] **Aviation-compatible liability cover — feasibility at renewal.**
+            The Hiscox policy excludes aviation. At Airbus/Aalto onboarding,
+            procurement asked whether we held aviation-compatible PL; they
+            agreed to proceed regardless. Feasibility and market options
+            researched in `planning/research/02-aviation-liability.md`; raise
+            with Hiscox / a specialist aviation broker at the 2026-11-09
+            renewal.
 - [x] **Cyber Essentials renewal.** Completed 2026-05-22 (certificate
       7c7148de-…, profile 3.3 Danzell, whole-organisation scope; partner
       IASME, certification body World Computing). Held at
@@ -573,6 +587,20 @@ captured here so they survive the repo restructure. See
       programme experience, CPD pointer to REG-04) as a one-page
       record under `/qms/records/competence/`. References the existing
       evidence files.
+
+## Supplier certificates outstanding
+
+- [ ] **Wye Valley Services Ltd — ISO 9001:2015 and AS9100D
+      certificates.** Added to REG-05 as an approved supplier on
+      2026-07-06 (precision CNC turning subcontractor). Approval basis
+      is their QMS certification, but the certificates are not yet
+      held — supplier to provide "shortly", and neither their website
+      nor any public source corroborates the certifications. On
+      receipt: file the PDFs in `qms/records/suppliers/`, update the
+      README index and the REG-05 cert column (issuer, number,
+      expiry), attach to the InvenTree record, and change the InvenTree
+      description from "certificates to be filed" to "certificate(s)
+      attached". Until then the approval rests on Patrick's assertion.
 
 ## Repository restructure (2026-06-03)
 
