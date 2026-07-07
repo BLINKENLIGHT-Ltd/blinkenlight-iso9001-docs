@@ -607,6 +607,33 @@ captured here so they survive the repo restructure. See
         (or accredited by another IAF signatory) and record it; do not
         represent the certificate as UKAS-accredited until confirmed.
 
+## Active engagement follow-ups
+
+- [ ] **Aalto PO-AH000006085-1 — chase quantity and connector decision.**
+      Two points raised with Aalto (Chris) on 2026-07-07 and open (logged
+      in the engagement README). **Follow up w/c 2026-07-13 (next QMS
+      sweep) if no reply.**
+      - PO quantity 14 vs 7 previously discussed. Suspected the PO may
+        have been issued in error (revert to qty 7 on the original,
+        obsolete connector); confirm with Aalto.
+      - If qty 14 stands, the obsolete drawing-specified connector
+        C-1050770 (TE 1050770-1) must be substituted with the recommended
+        replacement (TE 2466282-1) — a deviation from the approved design
+        package needing Aalto's written authorisation before build.
+      Do not proceed to build until resolved (hold beyond detail-part
+      procurement). On reply: close the README open points, and if a
+      substitution/mixed batch is authorised, file Aalto's written
+      approval in the engagement's `01-scope/`.
+
+- [ ] **Set up connector parts in InvenTree.** Neither connector is in
+      InvenTree. Create the internal part and supplier/manufacturer parts
+      for C-1050770 (TE Connectivity 1050770-1, obsolete) and the
+      replacement TE Connectivity 2466282-1, before ordering replacements
+      for Aalto PO-AH000006085-1. When setting up, also enter the original
+      circa-2023 purchase order for the 9 off obsolete connectors (bought
+      by BLINKENLIGHT against a future order, pre-InvenTree) so the
+      existing stock has an InvenTree provenance/traceability record.
+
 ## Repository restructure (2026-06-03)
 
 - [ ] **QMS submodule surgery.** Decision: `qms/` to be split into its
