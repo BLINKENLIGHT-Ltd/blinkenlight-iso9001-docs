@@ -590,17 +590,22 @@ captured here so they survive the repo restructure. See
 
 ## Supplier certificates outstanding
 
-- [ ] **Wye Valley Services Ltd — ISO 9001:2015 and AS9100D
-      certificates.** Added to REG-05 as an approved supplier on
-      2026-07-06 (precision CNC turning subcontractor). Approval basis
-      is their QMS certification, but the certificates are not yet
-      held — supplier to provide "shortly", and neither their website
-      nor any public source corroborates the certifications. On
-      receipt: file the PDFs in `qms/records/suppliers/`, update the
-      README index and the REG-05 cert column (issuer, number,
-      expiry), attach to the InvenTree record, and change the InvenTree
-      description from "certificates to be filed" to "certificate(s)
-      attached". Until then the approval rests on Patrick's assertion.
+- [ ] **Wye Valley Services Ltd — renewed QMS certificate.**
+      Certificate received and filed 2026-07-07
+      (`wye-valley-services-iso9001-as9100d-cert-20224752_2025-07-05.pdf`):
+      a single ISO 9001:2015 certificate incorporating AS/EN 9100 Rev D
+      (AS9100D), issued by Quality Systems Certifications Ltd (QSC Ltd),
+      cert 20224752, scope Precision Engineering excluding clause 8.3.
+      Two open points:
+      - **Certificate lapsed 2026-07-04.** Supplier says the renewal
+        will issue 2026-07-14. Obtain the renewed certificate, then
+        replace the filed PDF, update the REG-05 expiry, and refresh
+        the InvenTree attachment/description. Approval currently rests
+        on a lapsed certificate plus the supplier's renewal assurance.
+      - **QSC Ltd accreditation not established.** The certificate
+        shows no UKAS mark. Confirm whether QSC Ltd is UKAS-accredited
+        (or accredited by another IAF signatory) and record it; do not
+        represent the certificate as UKAS-accredited until confirmed.
 
 ## Repository restructure (2026-06-03)
 
