@@ -42,9 +42,27 @@ Patrick of anything he may have forgotten.
 - **No `TODO` / notes-to-self in `/qms/`** (`grep -rn "TODO" qms/`). These
   belong only in `planning/GAPS.md`.
 - Every controlled document has complete frontmatter; versions and
-  `approved_date`s are consistent; `supersedes` correct.
-- **MDL-01 lists every controlled document on disk** — none missing, none
-  stale (compare the file set to the Master Document List).
+  `approved_date`s are consistent; `supersedes` points to the superseded
+  version (prior commit hash, or prior version string where that style is
+  used).
+- **MDL-01 reconciles with the documents on disk**, in both directions:
+  - **Completeness:** every controlled document on disk appears in MDL-01,
+    and every MDL-01 row resolves to a file (none missing, none withdrawn
+    in error).
+  - **Version column matches frontmatter:** each MDL-01 row's version must
+    equal that document's frontmatter `version`. A version bump must update
+    the MDL row in the same commit (QP-01); a mismatch means an earlier bump
+    skipped the MDL. Extract the true versions, e.g. from `qms/`:
+    ```
+    for f in manual/*.md DOC-CONTROL.md procedures/*.md records/*.md \
+             records/product-test-procedures/*.md templates/QF-*.md; do
+      awk -F': ' '/^id:/{i=$2} /^version:/{gsub(/"/,"",$2); v=$2} \
+                  /^approved_date:/{d=$2} \
+                  END{printf "%-8s %-6s %s\n", i, v, d}' "$f"
+    done
+    ```
+    then diff against the MDL version column. Flag every drift with the
+    document id, the MDL value, and the true frontmatter value.
 - Cross-references resolve (referenced QP-/REG-/PTP-/QF-/§ exist).
 - No overstatements, no unverified third-party claims surfaced only to be
   dismissed, no AI-boilerplate; registers agree with their procedures.
