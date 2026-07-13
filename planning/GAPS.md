@@ -224,17 +224,13 @@ should remind Patrick occasionally about anything still open here.
       complete before the current cert (K1397) expires on 2026-06-26.
       File the new cert under `qms/records/calibration/` and update
       REG-01 INS-05 on receipt.
-- [~] **SOL cal kit (BL-0024) — at Kirkby, renewal in progress; file new
-      cert and update REG-01 on return.** Cert K1397 expired **2026-06-26**.
-      Kit was sent to Kirkby Microwave for renewal (booked wk of 2026-06-08);
-      as at 2026-07-05 **still being processed — running longer than planned;
-      Patrick chasing.** While away the kit is out of cal, so the VNA
-      (BL-0029) verification chain, the Tekbox attenuator verification
-      (BL-0023) and the cable checks (BL-0049/50) cannot be evidenced, and
-      controlled measurements for the Aalto build (target delivery
-      2026-07-13) are on hold until it returns. On return: file the new
-      certificate under `qms/records/calibration/` and update REG-01 BL-0024
-      (cert no., issue date, new expiry) and the §Notes traceability chain.
+- [x] **SOL cal kit (BL-0024) — returned uncalibrated; superseded by the
+      24-month interval.** Kirkby could not complete the 2026 re-calibration
+      (illness) and returned the kit uncalibrated. Under the 24-month external
+      interval adopted 2026-07-12 (QP-06 §6.1), no external re-cal was due —
+      cert K1397 (2025-06-27) remains the basis, next external cal 2027-06-27.
+      The live action is the first annual in-house verification (QP-18) — see
+      the open item above (due 2026-06-27). Closed 2026-07-13.
 - [ ] **Kirkby Microwave — narrow traceability follow-up (option C).**
       Kirkby replied 2026-06-03 declining a UKAS-grade traceability
       statement: its reference standards receive a standard (non-UKAS)
