@@ -642,6 +642,15 @@ captured here so they survive the repo restructure. See
         C-1050770 (TE 1050770-1) must be substituted with the recommended
         replacement (TE 2466282-1) — a deviation from the approved design
         package needing Aalto's written authorisation before build.
+
+- [ ] **CA-2026-001 — complete root-cause analysis and corrective action
+      (late delivery, PO-AH000005952-2).** Raised 2026-07-13 in REG-03 for
+      missing the contractual PO delivery date (2026-07-16; revised estimate
+      ~2026-07-24, ~8 days late). Determine the root cause (why build/test/
+      documentation ran beyond the PO date), decide corrective action — or
+      justify none if a genuine one-off — confirm Aalto's acceptance of the
+      revised date, and close the entry (QP-14). Reviewed at management
+      review (QP-07).
       Do not proceed to build until resolved (hold beyond detail-part
       procurement). On reply: close the README open points, and if a
       substitution/mixed batch is authorised, file Aalto's written
