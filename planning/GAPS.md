@@ -116,13 +116,13 @@ should remind Patrick occasionally about anything still open here.
       enclosures are RF-isolation enclosures rather than anechoic
       (RF-absorbing); confirm no other anechoic chamber is in use.
 
-- [~] **HP 34401A multimeter (BL-0016) — sent for re-calibration; in
-      progress.** Calibration expired 2024-11-22; quarantined under QP-06 §7
-      with the "OUT OF CAL" label. Now dispatched to a cal lab; as at
-      2026-07-05 still being processed. On return, file the new cert in
-      `qms/records/calibration/`, move BL-0016 out of the quarantine table in
-      REG-01 into the in-scope table with cert no./date/expiry, and remove the
-      OUT OF CAL label. No controlled measurements made on it since cal expiry.
+- [x] **HP 34401A multimeter (BL-0016) — re-calibrated and returned to
+      scope.** Serial confirmed **3146A46647** on the unit's return
+      (2026-07-13); the register typo (was `3146A46547`) is corrected.
+      Re-calibrated by Niche RF Ltd (cert NRF24062026C, 2026-06-24, PASS
+      50/50, next due 2027-06-24). BL-0016 moved from quarantine to the
+      in-scope table in REG-01, 12-month cadence. Physically remove the
+      "OUT OF CAL" label from the instrument.
 
 - [x] **GPSDO asset tag.** BL-0047 (Leo Bodnar Precision GPS Reference
       Clock, no serial). Confirmed and recorded in REG-01 2026-06-03.
@@ -168,6 +168,32 @@ should remind Patrick occasionally about anything still open here.
       accepted tolerance per attenuator. File the verification record
       at `qms/records/calibration/tekbox-tbas217173-verification_<date>.md`
       and update REG-01 BL-0023.
+
+- [ ] **Perform the first annual SOL cal kit verification (QP-18).** Due
+      2026-06-27 (one year after the last external calibration, K1397
+      2025-06-27); now due. Fix the QF-05 acceptance tolerances/frequencies
+      first (item below), run per QP-18, file the record in
+      `qms/records/calibration/sol-cal-kit-verification/`, and enter the
+      result against BL-0024 in REG-01. The next external calibration is not
+      due until 2027-06-27 under the 24-month interval (QP-06 §6.1). Kirkby
+      Microwave was unable to perform a re-calibration in 2026 (illness); not
+      required under the 24-month interval, but re-book early if the
+      verification suggests any drift.
+
+- [x] **QP-18 / QF-05 acceptance tolerances and spot frequencies set.** Done
+      2026-07-13: ten spot frequencies (50 MHz–7 GHz) and the certificated S21
+      of reference attenuator 0882 (from `attenuator-0882.s2p`, K1401) are
+      pre-filled in QP-18 §6 and QF-05; acceptance tolerance ±0.30 dB on S21,
+      set by the verification system's own measurement uncertainty (8753ES +
+      85033 kit), not the certificate's. Reference s2p filed under
+      `qms/records/calibration/`.
+
+- [ ] **Substantiate the 24-month SOL cal kit interval.** Obtain the
+      manufacturer's (Keysight/HP 85033) recommended calibration interval and
+      assemble the kit's drift history across successive Kirkby certificates.
+      Confirm or revise the 24-month external interval at the annual
+      management review per QP-06 §6.1 (ILAC-G24 basis); interim control is
+      the annual in-house verification under QP-18.
 
 - [x] **Pemberton Digital asset tagging confirmed.** Pemberton
       equipment is asset-tagged under their own scheme (confirmed
