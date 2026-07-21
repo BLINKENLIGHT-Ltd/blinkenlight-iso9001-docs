@@ -372,6 +372,22 @@ within the next week or so, to match the documents.
       On binding: file the schedule, wording and Key Facts in
       `/qms/records/insurance/`, update `records/insurance/README.md`, and
       revise REG-02 R-08.
+
+      **On binding — Aalto notification (closes the JP-AR-001 clause 12.3
+      point).** Aalto's terms require product-liability cover far above
+      that held (clause 12.3.4, USD 650M) but permit a lower figure agreed
+      in writing by Aalto. At 2023 onboarding BLINKENLIGHT disclosed its
+      cover and Aalto placed PO-AH000000188-1 with knowledge of it, but the
+      PO's Specific Conditions are silent on insurance, so this is approval
+      by conduct, not an express written variation (disclosure and approval
+      record now filed at `/qms/records/customers/aalto-haps/`). When the
+      Chubb certificate arrives, send it to Chris (or successor) with the
+      good news and request his written confirmation that the insurance
+      level is approved. File the reply in
+      `/qms/records/customers/aalto-haps/` and note it in that README and in
+      REG-02 R-09. This furnishes the certificate required under clause 12.3
+      and converts approval-by-conduct into the written agreement clause
+      12.3.4 contemplates.
 - [x] **Hiscox PI / liability — policy recorded.** Done 2026-07-05.
       Single Hiscox policy PL-PSC10003370426/02, period 10/11/2025 to
       09/11/2026 (in date), next renewal **2026-11-09** (now on the QMS
