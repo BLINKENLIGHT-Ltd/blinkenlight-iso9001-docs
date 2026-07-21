@@ -200,6 +200,14 @@ document.
 - `/planning/GAPS.md` — every piece of real input still needed from Patrick.
 - `/planning/research/` — research notes that feed the plan but are
   not part of the QMS itself (kept for traceability of decisions).
+- `/planning/reference/` — source standards and external reference
+  documents. Holds `AS9100D-2016.pdf` (SAE International, 2016) with a
+  parallel `AS9100D-2016.md` text extract for grepping — **consult the
+  standard directly rather than relying on recall or web summaries when
+  a clause is in question.** Note bold text in the printed standard marks
+  aerospace additions to the underlying ISO 9001:2015 wording, and that
+  distinction is lost in the markdown extract. Reference material only:
+  copyright SAE, never to be copied into `/qms/` or an audit pack.
 - `/CLAUDE.md` — this file; guidance for AI sessions. Not part of the
   QMS.
 
@@ -207,7 +215,11 @@ document.
 
 - One document per file. Each controlled document carries YAML
   frontmatter: `id`, `title`, `version`, `approved_date`, `approver`,
-  `supersedes` (commit hash), `clause_refs`.
+  `supersedes`, `clause_refs`. Per QP-01 §5, `supersedes` is the
+  **previous version string** (e.g. `"1.2"`), not a commit hash — the
+  approving commit's hash cannot be known before that commit exists, and
+  the prior commit is recoverable from history regardless. Use
+  `none (initial issue)` for a v1.0.
 - Never run `git` commands without explicit user approval.
 - Never draft a procedure to fill a gap — find a real engagement that
   exercises the clause, draft the procedure against it, then generalise.
@@ -254,8 +266,8 @@ for meta commits.
 ### Splitting commits
 
 If a change touches both QMS files and meta files, make two commits:
-the QMS commit first (so its hash is stable for the `supersedes`
-field), then the meta commit. Do not mix them in a single commit.
+the QMS commit first, then the meta commit. Do not mix them in a single
+commit.
 
 ### Dedicated QMS commit command
 
