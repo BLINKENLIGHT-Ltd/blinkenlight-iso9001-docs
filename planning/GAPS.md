@@ -644,6 +644,36 @@ captured here so they survive the repo restructure. See
       recorded, serialised and certified separately (see the InvenTree
       part-revision handling in the Certificate of Conformity work).
 
+- [ ] **NCAGE application — submitted 2026-07-21, awaiting approval.** NATO
+      Commercial and Government Entity code applied for through the UK National
+      Codification Bureau (ncb.mod.uk) for BLINKENLIGHT Ltd at Unit 309.
+      Requested as Manufacturer. Record the Reference string used on the
+      application here — it must be re-entered to confirm the creation and is
+      the only link back to the request. On issue: add the code to the
+      Certificate of Conformity issuer block (marked in
+      `planning/inventree/certificate-of-conformity.html`), satisfying Airbus
+      A1505 §3.2.1(b)(iii), and record it in CLAUDE.md company facts.
+      Note the registry entry is public: it carries the business telephone,
+      info@ address and the GLN.
+
+- [ ] **Update the GS1 UK record to BLINKENLIGHT Ltd.** The annual licence
+      (company prefix 506088907, GLN 5060889070001) is issued to "Paradar" —
+      a product brand, not the legal entity — with superseded contact details.
+      The prefix is the documented basis of the GTIN scheme under QP-11, so
+      the licensee should be the legal entity at the current registered
+      address. Filed at
+      `qms/records/product-compliance/gs1-uk-licence-expires_2026-12-27.pdf`.
+      Undertaken 2026-07-21 on the basis that the GLN was submitted to the
+      NCAGE (NATO Commercial and Government Entity) registration the same day;
+      until GS1 is corrected, a public NATO registry entry for BLINKENLIGHT
+      Ltd cites a GLN registered to a differently-named licensee.
+      Replace the filed certificate once reissued.
+
+- [ ] **GS1 UK licence renewal — due 2026-12-27.** Annual. Lapse invalidates
+      the company prefix and with it the basis of the GTIN product numbering
+      under QP-11. Track alongside the other expiries (insurance, Cyber
+      Essentials, supplier certificates).
+
 - [ ] **Extract Aalto's flow-down requirements into a checklist mapped to QMS
       procedures.** Aalto's supplier terms are held only in the PO PDFs under
       `00-customer-property/`. Nothing in the tracked record establishes what
