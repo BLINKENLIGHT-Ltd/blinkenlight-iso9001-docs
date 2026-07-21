@@ -331,6 +331,47 @@ within the next week or so, to match the documents.
       REG-02 R-08 (fire, theft, physical damage, equipment loss, no
       backup lab). File the updated Hiscox certificates in
       `/qms/records/insurance/` and update R-08 once in place.
+- [ ] **Aviation products liability — bind the Chubb policy (quote
+      NCQ30314).** Quoted 2026-07-15 via Castlemead (Adrian) with Marsh as
+      scheme broker; underwriter Chubb European Group SE. Two options, both
+      nil deductible, worldwide, £2M £4,063 + IPT and £5M £4,741 + IPT.
+      Taking the £5M; £10M pricing requested as the marginal cost of limit
+      is low. Note the limits are **aggregate**, and coverages A and B share
+      one combined aggregate.
+
+      Open before binding:
+      - Quoted period runs 2026-07-20 to 2027-07-19 — inception has already
+        passed. Get it re-dated or confirmed. Quote valid 60 days from
+        2026-07-15 (to ~2026-09-13).
+      - Queries sent to Adrian: (i) Key Facts sheet excludes unmanned
+        aerial vehicles from Coverage B grounding cover, but the policy
+        wording does not and its "Aircraft" definition expressly includes
+        UAVs — confirm which governs; (ii) grounding cover requires a
+        "Certified Aircraft" holding a type certificate, and the Aalto
+        Zephyr holds only CAA Design Organisation Approval (July 2024) with
+        a type certificate targeted late 2027 / early 2028 — so Coverage B
+        may not respond to the Aalto exposure today; (iii) whether the
+        AVN46B electrical and electromagnetic interference exclusion can be
+        amended, this being the most plausible failure mode for an antenna
+        supplier.
+      - Rated on a declared annual sales value of £50,000, with a duty to
+        notify increases. Confirm whether this means total turnover or
+        aviation contract value before binding.
+      - Quote is conditional on the products being **non-critical**. If a
+        customer classifies a supplied item as flight- or safety-critical,
+        the basis fails. Record the classification basis in the QMS.
+      - Not covered, accepted for now: product recall and rectification
+        (exclusions A.3 and A.6); design-error economic loss (A.4, see the
+        Hiscox renewal item below); space and satellite work (A.7/A.8,
+        Endorsement F not on the schedule); contractual liability beyond
+        common law (General Exclusion 1).
+      - Cover is occurrence-based, so it responds only if a policy is in
+        force when an accident happens. Products already shipped go bare if
+        the policy lapses. Budget as an indefinite annual cost.
+
+      On binding: file the schedule, wording and Key Facts in
+      `/qms/records/insurance/`, update `records/insurance/README.md`, and
+      revise REG-02 R-08.
 - [x] **Hiscox PI / liability — policy recorded.** Done 2026-07-05.
       Single Hiscox policy PL-PSC10003370426/02, period 10/11/2025 to
       09/11/2026 (in date), next renewal **2026-11-09** (now on the QMS
@@ -342,20 +383,30 @@ within the next week or so, to match the documents.
             registered office (Unit 13 Freeland Park, BH16 6FA); the company
             moved to Unit 309 The Pill Box on 19 October 2025. Ask Hiscox to
             reissue against the current address at the 2026-11-09 renewal.
-      - [ ] **Hiscox — review PI limit at renewal.** PI cover is currently
-            £1,000,000. Core revenue is design/R&D advice for aerospace/RF
-            clients (Aalto/Airbus, DXComm/Commtrack), the exact exposure PI
-            covers and where a negligent-design claim can exceed £1M. Check
-            each client contract (and the canonical Terms of Business) for a
-            stated PI minimum; consider raising to £2M at the 2026-11-09
-            renewal. Public/products liability at £5M is adequate; no change.
-      - [ ] **Aviation-compatible liability cover — feasibility at renewal.**
-            The Hiscox policy excludes aviation. At Airbus/Aalto onboarding,
-            procurement asked whether we held aviation-compatible PL; they
-            agreed to proceed regardless. Feasibility and market options
-            researched in `planning/research/02-aviation-liability.md`; raise
-            with Hiscox / a specialist aviation broker at the 2026-11-09
-            renewal.
+      - [ ] **Hiscox — review PI limit and aviation exclusion at renewal
+            (2026-11-09).** PI cover is currently £1,000,000 and excludes
+            aviation work. Discussed with Adrian at Castlemead during the
+            aviation products liability placement (July 2026): aviation-
+            extended PI agreed as **not required immediately**, because the
+            current Aalto work is manufacture to Aalto's own design and test
+            plan, not design work by BLINKENLIGHT — so there is no live
+            aviation design-liability exposure. **This holds only while that
+            remains true.** If any aviation *design* engagement is taken on,
+            aviation-extended PI must be in place first; treat it as a
+            precondition of accepting such work, not a renewal-time item.
+
+            At the 2026-11-09 renewal, replace the Hiscox policy with better
+            cover: aviation-capable PI, and a limit review. Core revenue is
+            design/R&D advice for aerospace/RF clients (Aalto/Airbus,
+            DXComm/Commtrack), the exact exposure PI covers and where a
+            negligent-design claim can exceed £1M. Check each client contract
+            (and the canonical Terms of Business) for a stated PI minimum;
+            consider raising to £2M. Public/products liability at £5M is
+            adequate; no change. Market options researched in
+            `planning/research/02-aviation-liability.md`. Note the Chubb
+            aviation products policy does **not** fill this gap: exclusion
+            A.4 removes loss from improper or inadequate design or
+            specification, writing back only resulting injury or damage.
 - [x] **Cyber Essentials renewal.** Completed 2026-05-22 (certificate
       7c7148de-…, profile 3.3 Danzell, whole-organisation scope; partner
       IASME, certification body World Computing). Held at
