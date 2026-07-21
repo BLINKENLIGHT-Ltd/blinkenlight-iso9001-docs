@@ -631,17 +631,55 @@ captured here so they survive the repo restructure. See
 
 ## Active engagement follow-ups
 
-- [ ] **Aalto PO-AH000006085-1 — chase quantity and connector decision.**
-      Two points raised with Aalto (Chris) on 2026-07-07 and open (logged
-      in the engagement README). **Follow up w/c 2026-07-13 (next QMS
-      sweep) if no reply.**
-      - PO quantity 14 vs 7 previously discussed. Suspected the PO may
-        have been issued in error (revert to qty 7 on the original,
-        obsolete connector); confirm with Aalto.
-      - If qty 14 stands, the obsolete drawing-specified connector
-        C-1050770 (TE 1050770-1) must be substituted with the recommended
-        replacement (TE 2466282-1) — a deviation from the approved design
-        package needing Aalto's written authorisation before build.
+- [x] **Aalto PO-AH000006085-1 — quantity and connector decision.**
+      Resolved 2026-07-20. No connector substitution will be made. Build
+      proceeds only to the quantity supportable from the existing stock of
+      the drawing-specified connector C-1050770 (TE 1050770-1); the balance
+      of PO-AH000006085-1 is held pending an updated drawing issue carrying
+      the replacement connector part number. Aalto has the change under
+      their own change control. No deviation from the approved design
+      package arises, and no concession is required.
+      Consequence: the PO will be satisfied across two drawing issues.
+      Units built to each issue are separate configurations and must be
+      recorded, serialised and certified separately (see the InvenTree
+      part-revision handling in the Certificate of Conformity work).
+
+- [ ] **Extract Aalto's flow-down requirements into a checklist mapped to QMS
+      procedures.** Aalto's supplier terms are held only in the PO PDFs under
+      `00-customer-property/`. Nothing in the tracked record establishes what
+      they actually bind BLINKENLIGHT to — whether AS9102 first article
+      inspection, counterfeit-part controls, workmanship standards, record
+      retention or a mandated Certificate of Conformity (CoC) format apply.
+      Read the terms clause by clause against the QMS and record the mapping.
+      This governs over the generic Airbus requirements researched in
+      `planning/research/03-aerospace-coc-requirements.md` and blocks sensible
+      decisions on what to volunteer in the documentation pack.
+
+- [ ] **Define a controlled list of authorised signatories.** Aerospace
+      customers expect release certificates to be signed by a named authority
+      drawn from a controlled document (see the CAV Systems comparator in
+      `planning/research/03-aerospace-coc-requirements.md` §4). Currently the
+      CoC hard-codes Patrick Coleman, Technical Director, with no controlling
+      record. Cheap to add — likely a short register or a section of QP-03
+      (roles and responsibilities) — and commonly missed by small suppliers.
+
+- [x] **Rework the QMS record retention clause (QP-01 §10).** Done 2026-07-21.
+      Period set at fifteen years from creation of the record, with the
+      airworthiness carve-out (operational life, or transfer to the customer),
+      a hold on disposal pending a claim, investigation or audit, and
+      precedence for QP-12 (customer property) and UK GDPR storage limitation.
+      The period is now stated **only** in QP-01 §10; the twenty-two other
+      documents that previously restated "six years" reference the clause
+      instead. Basis recorded in
+      `planning/research/03-aerospace-coc-requirements.md` §6.
+
+- [ ] **File Aalto's acceptance of partial delivery (PO-AH000006085-1).**
+      The engagement README now records that Aalto accepted delivery in two
+      tranches and that the connector change is under their change control.
+      The supporting correspondence must be filed in the engagement's
+      `01-scope/` — it is the evidence for splitting a PO quantity and for
+      the second tranche's revised date. Correct the resolution date in the
+      README if Aalto's acceptance predates 2026-07-20.
 
 - [ ] **CA-2026-001 — complete root-cause analysis and corrective action
       (late delivery, PO-AH000005952-2).** Raised 2026-07-13 in REG-03 for
@@ -652,18 +690,18 @@ captured here so they survive the repo restructure. See
       revised date, and close the entry (QP-14). Reviewed at management
       review (QP-07).
       Do not proceed to build until resolved (hold beyond detail-part
-      procurement). On reply: close the README open points, and if a
-      substitution/mixed batch is authorised, file Aalto's written
-      approval in the engagement's `01-scope/`.
+      procurement). On reply, close the README open points.
 
-- [ ] **Set up connector parts in InvenTree.** Neither connector is in
-      InvenTree. Create the internal part and supplier/manufacturer parts
-      for C-1050770 (TE Connectivity 1050770-1, obsolete) and the
-      replacement TE Connectivity 2466282-1, before ordering replacements
-      for Aalto PO-AH000006085-1. When setting up, also enter the original
-      circa-2023 purchase order for the 9 off obsolete connectors (bought
-      by BLINKENLIGHT against a future order, pre-InvenTree) so the
-      existing stock has an InvenTree provenance/traceability record.
+- [ ] **Set up connector parts in InvenTree.** Create the internal part and
+      supplier/manufacturer parts for C-1050770 (TE Connectivity 1050770-1,
+      obsolete). Also enter the original circa-2023 purchase order for the
+      9 off obsolete connectors (bought by BLINKENLIGHT against a future
+      order, pre-InvenTree) so the existing stock has an InvenTree
+      provenance/traceability record — this is now the stock the first
+      tranche of PO-AH000006085-1 is built from, so its traceability is
+      load-bearing for the Certificate of Conformity.
+      The replacement connector is not set up until Aalto issue the updated
+      drawing naming the part they have selected.
 
 ## Repository restructure (2026-06-03)
 
