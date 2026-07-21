@@ -612,18 +612,22 @@ captured here so they survive the repo restructure. See
 
 ## Supplier certificates outstanding
 
-- [ ] **Wye Valley Services Ltd — renewed QMS certificate.**
-      Certificate received and filed 2026-07-07
-      (`wye-valley-services-iso9001-as9100d-cert-20224752_2025-07-05.pdf`):
+- [ ] **Wye Valley Services Ltd — QMS certificate.**
+      Renewed certificate received and filed 2026-07-21
+      (`wye-valley-services-iso9001-as9100d-cert-20224752_2026-07-05.pdf`):
       a single ISO 9001:2015 certificate incorporating AS/EN 9100 Rev D
       (AS9100D), issued by Quality Systems Certifications Ltd (QSC Ltd),
-      cert 20224752, scope Precision Engineering excluding clause 8.3.
-      Two open points:
-      - **Certificate lapsed 2026-07-04.** Supplier says the renewal
-        will issue 2026-07-14. Obtain the renewed certificate, then
-        replace the filed PDF, update the REG-05 expiry, and refresh
-        the InvenTree attachment/description. Approval currently rests
-        on a lapsed certificate plus the supplier's renewal assurance.
+      cert 20224752, scope Precision Engineering excluding clause 8.3,
+      current 2026-07-05 and expiring 2027-07-04. The lapse of the
+      previous certificate is closed: renewal is effective the day
+      after the previous expiry, so cover was continuous. REG-05 §1 and
+      §2 updated (v1.7); the superseded certificate is retained in
+      `suppliers/` under QP-01 §10. Two open points:
+      - **InvenTree attachment not yet replaced.** Attach the renewed
+        certificate to the Wye Valley company record in place of the
+        superseded one (QP-16 §4). The approval statement in the
+        company description needs no change: approval date, approver
+        and basis are unaffected by the renewal.
       - **QSC Ltd accreditation not established.** The certificate
         shows no UKAS mark. Confirm whether QSC Ltd is UKAS-accredited
         (or accredited by another IAF signatory) and record it; do not

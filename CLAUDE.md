@@ -226,7 +226,26 @@ document.
   approving commit's hash cannot be known before that commit exists, and
   the prior commit is recoverable from history regardless. Use
   `none (initial issue)` for a v1.0.
+- **Never delete a superseded record PDF.** When a renewed supplier
+  certificate, calibration certificate, insurance schedule or similar
+  arrives, file it alongside its predecessor under the existing
+  `<slug>_<YYYY-MM-DD>.pdf` convention and repoint the register and
+  folder README at the new file. The superseded PDF stays in the
+  working tree: QP-01 §10 retains superseded versions indefinitely and
+  records for fifteen years, and the audit pack renders `main` HEAD —
+  not Git history — so a certificate deleted from HEAD is invisible to
+  an auditor checking the approval basis that applied when a past
+  purchase order was raised. Folder READMEs list only the current
+  certificate; superseded ones remain in the folder unlisted (see
+  `records/calibration/README.md` for the pattern).
 - Never run `git` commands without explicit user approval.
+- **Always run `git commit` outside the sandbox** (`dangerouslyDisableSandbox:
+  true`). The sandbox mounts `~/.gnupg` read-only, so gpg-agent cannot start
+  and signing fails with "No agent running". Commit signing is enforced on
+  `main` and the signature is the approval record under QP-01 §6, so an
+  unsigned commit is not an acceptable fallback — disable the sandbox for the
+  commit rather than dropping `-S`. Verify with
+  `git log --show-signature -1` after committing a controlled document.
 - Never draft a procedure to fill a gap — find a real engagement that
   exercises the clause, draft the procedure against it, then generalise.
 - When the user references items in `GAPS.md`, treat them as a working
