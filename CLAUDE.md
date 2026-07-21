@@ -111,6 +111,12 @@ only with permission.
 - Registered address from founding (Jan 2021) to 19 October 2025: Lytchett House, 13 Freeland Park, Wareham Road, Pool, BH16 6FA
 - Operating address: from 24th June 2022 to April 2023: Unit 311 The Pill Box, 115 Coventry Road, London E2 6GH. After April 2023 - Unit 309, same building.
 - Company no. 13110356. Founded 4th January 2021. Private Limited Company. VAT reg GB368918147, EORI GB368918147000, DUNS 227576062
+- Public-facing business telephone: 020 8088 5638 (forwards to Patrick's
+  mobile). Use this on registrations, public registries and customer-facing
+  documents in preference to a personal number.
+- GS1 UK company prefix 506088907; legal entity GLN (Global Location Number)
+  5060889070001. Basis of the GTIN (Global Trade Item Number) scheme on
+  own-brand products. Licence renews annually, next 2026-12-27.
 - Directors: Patrick Coleman and Vytautas Rudys
 - Sole operator: Patrick Coleman. BEng (Bachelor of Engineering,
   Mechatronics) + BSc (Bachelor of Science, Computer Science). Not a
