@@ -626,10 +626,25 @@ captured here so they survive the repo restructure. See
       updated and the renewed certificate uploaded on 2026-07-21, so
       the live approval status at point of use (QP-16 §4) matches
       REG-05. One open point:
-      - **QSC Ltd accreditation not established.** The certificate
-        shows no UKAS mark. Confirm whether QSC Ltd is UKAS-accredited
-        (or accredited by another IAF signatory) and record it; do not
-        represent the certificate as UKAS-accredited until confirmed.
+      - **QSC Ltd accreditation — closed as not material to
+        certification; one narrower point left open.** The certificate
+        carries no accreditation mark and no UKAS-accredited body of
+        that name was found, so treat it as non-accredited. This is
+        not a nonconformity: AS9100D 8.4.1 NOTE makes certification-body
+        data a permitted input to supplier evaluation, only one element
+        of it, and leaves BLINKENLIGHT responsible for verifying
+        conformity regardless. Approval rests on manufacture to
+        BLINKENLIGHT drawings with incoming inspection, which is
+        unaffected. REG-05 makes no accreditation claim for this
+        supplier and needs no correction.
+        Open: for AS9100/EN 9100, industry recognition requires a
+        certification body accredited under EN 9104 and listed in the
+        IAQG OASIS database. Check certificate 20224752 in OASIS, or
+        ask Wye Valley which body accredits QSC Ltd. Until confirmed,
+        do not cite Wye Valley's AS9100D status to Aalto or any other
+        aerospace customer as evidence of sub-tier aerospace
+        certification; cite the drawing-conformity and incoming-
+        inspection controls instead.
 
 ## Active engagement follow-ups
 
