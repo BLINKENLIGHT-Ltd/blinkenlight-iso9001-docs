@@ -622,12 +622,10 @@ captured here so they survive the repo restructure. See
       previous certificate is closed: renewal is effective the day
       after the previous expiry, so cover was continuous. REG-05 §1 and
       §2 updated (v1.7); the superseded certificate is retained in
-      `suppliers/` under QP-01 §10. Two open points:
-      - **InvenTree attachment not yet replaced.** Attach the renewed
-        certificate to the Wye Valley company record in place of the
-        superseded one (QP-16 §4). The approval statement in the
-        company description needs no change: approval date, approver
-        and basis are unaffected by the renewal.
+      `suppliers/` under QP-01 §10. The InvenTree company record was
+      updated and the renewed certificate uploaded on 2026-07-21, so
+      the live approval status at point of use (QP-16 §4) matches
+      REG-05. One open point:
       - **QSC Ltd accreditation not established.** The certificate
         shows no UKAS mark. Confirm whether QSC Ltd is UKAS-accredited
         (or accredited by another IAF signatory) and record it; do not
