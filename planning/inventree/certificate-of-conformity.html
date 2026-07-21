@@ -1,0 +1,588 @@
+{% extends "report/inventree_order_report_base.html" %}
+
+{% load i18n %}
+{% load report %}
+{% load inventree_extras %}
+
+{# BLINKENLIGHT Ltd Certificate of Conformity.
+   Rendered by InvenTree via WeasyPrint against model_type = salesordershipment.
+   Uses documented SalesOrderShipment context: shipment, order, allocations,
+   address. Issuer details are hardcoded (BLINKENLIGHT is not in the report
+   context); customer details come from the linked Company.
+
+   Part field mapping, for build-to-print customer-owned designs:
+     Name     - customer part number, as ordered
+     IPN      - assembly drawing number
+     Revision - drawing issue letter
+   One part record per drawing issue, linked via Revision Of, so that units
+   retain the issue they were actually built to.
+
+   DRAFT - not yet a controlled document. Fields marked NEEDS DECISION below
+   are placeholders and MUST be resolved before this template issues a real
+   certificate. A CoC is a conformity claim under ISO 9001:2015 cl. 8.6; do not
+   enable this template against live shipments until the release gate exists. #}
+
+{% block page_margin %}
+margin: 2cm 1.6cm;
+margin-top: 3.4cm;
+margin-bottom: 2.2cm;
+{% endblock page_margin %}
+
+{% block style %}
+
+/* ---- palette / type ---------------------------------------------------- */
+body {
+    color: #12181c;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'DejaVu Sans', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+}
+
+.mono {
+    font-family: 'DejaVu Sans Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+.eyebrow {
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #64727a;
+    font-weight: 700;
+}
+
+/* ---- header ------------------------------------------------------------ */
+.po-head {
+    width: 100%;
+    border-collapse: collapse;
+}
+.po-head td { vertical-align: middle; padding: 0; }
+
+.brand-logo { height: 15mm; }
+
+.doc-title {
+    text-align: right;
+}
+.doc-title .kicker {
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #12181c;
+}
+.doc-title .ref-chip {
+    display: inline-block;
+    margin-top: 3px;
+    padding: 2px 9px;
+    border: 1px solid #2f8b9e;
+    border-radius: 2px;
+    color: #2f8b9e;
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+/* teal rule under the header, led by a square tick echoing the wordmark */
+.rule {
+    margin-top: 8px;
+    border-top: 2px solid #2f8b9e;
+    position: relative;
+}
+.rule::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: #7db6c2;
+}
+
+/* ---- per-part certificate ---------------------------------------------- */
+/* One certificate per unique part: the assembly drawing and issue differ per
+   part, so a single referenced-documents block cannot serve a mixed shipment. */
+.cert { page-break-before: always; }
+.cert:first-of-type { page-break-before: avoid; }
+
+.cert-no {
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #d8dfe2;
+}
+.cert-no .ref-chip { margin-top: 0; }
+.cert-no .of {
+    float: right;
+    padding-top: 6px;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64727a;
+    font-weight: 700;
+}
+
+/* ---- parties / meta ---------------------------------------------------- */
+.parties {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 14px;
+}
+.parties td {
+    vertical-align: top;
+    padding: 0 14px 0 0;
+}
+.parties .col-meta {
+    width: 34%;
+    padding: 0;
+}
+
+.party-name { font-weight: 700; font-size: 10.5pt; }
+.party-body { color: #2a333a; }
+.party-contact { color: #64727a; font-size: 8.5pt; margin-top: 4px; }
+
+/* meta panel */
+.meta {
+    background: #eef5f7;
+    border: 1px solid #d8dfe2;
+    border-radius: 3px;
+}
+.meta table { width: 100%; border-collapse: collapse; }
+.meta td { padding: 5px 10px; border-bottom: 1px solid #dbe6ea; }
+.meta tr:last-child td { border-bottom: none; }
+.meta .k { color: #64727a; font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; }
+.meta .v { text-align: right; font-weight: 700; }
+
+/* ---- line items -------------------------------------------------------- */
+.section-label {
+    margin: 6px 0 6px 0;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2f8b9e;
+    font-weight: 700;
+}
+
+table.lines {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 9pt;
+}
+table.lines th, table.lines td { box-sizing: border-box; }
+table.lines th:nth-child(1), table.lines td:nth-child(1) { width: 10%; }
+table.lines th:nth-child(2), table.lines td:nth-child(2) { width: 70%; }
+table.lines th:nth-child(3), table.lines td:nth-child(3) { width: 20%; }
+
+/* part identity strip above the serial list */
+table.part-id {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+table.part-id td {
+    vertical-align: top;
+    padding: 0 14px 0 0;
+}
+table.part-id td:last-child { padding-right: 0; }
+table.lines td { overflow-wrap: anywhere; }
+table.lines thead th {
+    background: #12181c;
+    color: #ffffff;
+    font-size: 7pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 8px;
+}
+table.lines tbody td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #e4e9eb;
+    vertical-align: top;
+}
+table.lines tbody tr:nth-child(even) td { background: #f6f9fa; }
+
+.num { text-align: right; white-space: nowrap; }
+.item-name { font-weight: 700; }
+.item-desc { font-weight: 400; color: #2a333a; }
+.item-sub { color: #64727a; font-size: 8pt; }
+
+.subhead td {
+    background: #eef5f7 !important;
+    color: #2f8b9e;
+    font-weight: 700;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+}
+
+/* ---- declaration ------------------------------------------------------- */
+.declaration {
+    margin-top: 18px;
+    background: #eef5f7;
+    border-left: 3px solid #2f8b9e;
+    border-radius: 0 3px 3px 0;
+    padding: 11px 13px;
+    font-size: 9pt;
+}
+.declaration .h {
+    display: block;
+    font-size: 7pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #2f8b9e;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* ---- referenced documents --------------------------------------------- */
+.refs {
+    margin-top: 14px;
+}
+.refs table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+}
+.refs td {
+    padding: 4px 8px 4px 0;
+    border-bottom: 1px solid #e4e9eb;
+    vertical-align: top;
+}
+.refs tr:last-child td { border-bottom: none; }
+.refs .k {
+    width: 34%;
+    color: #64727a;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* ---- signature --------------------------------------------------------- */
+.sign {
+    margin-top: 22px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.sign td { vertical-align: bottom; padding: 0 18px 0 0; }
+.sign .line {
+    border-bottom: 1px solid #12181c;
+    height: 15mm;
+}
+.sign .cap {
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64727a;
+    font-weight: 700;
+    padding-top: 4px;
+}
+.sign .val { font-weight: 700; padding-top: 2px; }
+
+/* ---- notes ------------------------------------------------------------- */
+.notes {
+    margin-top: 16px;
+    font-size: 7.5pt;
+    color: #64727a;
+    line-height: 1.5;
+}
+.notes .h {
+    display: block;
+    font-size: 7pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #2f8b9e;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.notes ol { margin: 0; padding-left: 14px; }
+.notes li { margin-bottom: 2px; }
+
+/* ---- footer ------------------------------------------------------------ */
+.po-foot {
+    border-top: 1px solid #d8dfe2;
+    padding-top: 5px;
+    font-size: 7pt;
+    color: #64727a;
+    letter-spacing: 0.02em;
+}
+.po-foot .sep { color: #b9c4c8; padding: 0 5px; }
+
+{% endblock style %}
+
+{% block header_content %}
+<table class='po-head'>
+    <tr>
+        <td>
+            <svg class='brand-logo' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.05513 132.28347" role="img" aria-label="BLINKENLIGHT">
+                <g transform="matrix(1.3333333,0,0,-1.3333333,0,132.28346)">
+                    <path style="fill:#2f8b9e;fill-rule:nonzero" d="m 28.795674,52.105797 h 2.5 c 4.164,-0.003 6.246,2.082 6.25,6.25 -0.004,0.688 -0.086,1.293 -0.254,1.825 -0.171,0.523 -0.375,0.964 -0.605,1.32 -0.238,0.348 -0.594,0.644 -1.066,0.887 -0.477,0.242 -0.911,0.425 -1.297,0.558 -0.395,0.125 -0.949,0.219 -1.672,0.282 -0.723,0.054 -1.324,0.093 -1.805,0.109 -0.484,0.012 -1.168,0.016 -2.051,0.019 z m 0,-16.25 h 2.5 c 2.161,0 3.743,0.497 4.746,1.493 1,0.996 1.5,2.582 1.504,4.757 -0.004,2.172 -0.504,3.758 -1.504,4.754 -1.003,0.996 -2.585,1.493 -4.746,1.496 h -2.5 z m -5,-3.75 v 35 h 7.5 c 1.614,-0.003 3.059,-0.171 4.336,-0.507 1.274,-0.34 2.391,-0.856 3.348,-1.543 0.957,-0.696 1.691,-1.606 2.207,-2.735 0.512,-1.136 0.77,-2.457 0.773,-3.965 -0.003,-2.187 -0.464,-3.851 -1.386,-4.992 -0.926,-1.14 -2.352,-1.976 -4.278,-2.508 2.082,-0.691 3.645,-1.707 4.688,-3.039 1.039,-1.336 1.558,-3.238 1.562,-5.711 -0.004,-3.089 -0.898,-5.527 -2.687,-7.316 -1.789,-1.789 -4.227,-2.684 -7.313,-2.684 z m 22.422,0 v 35 h 5 v -31.25 h 8.75 v -3.75 z m 16.328,0 v 35 h 5 v -35 z m 10.391,0 v 35 h 3.75 l 8.75,-21.64 v 21.64 h 5 v -35 h -3.555 l -8.945,23.282 v -23.282 z m 22.5,0 v 35 h 4.999996 v -15 l 7.5,15 h 6.25 l -7.52,-13.75 8.77,-21.25 h -6.25 l -6.25,16.25 -2.5,-5 v -11.25 z m 21.874996,0 v 35 h 13.75 v -3.75 h -8.75 v -11.25 h 6.25 v -3.75 h -6.25 v -12.5 h 8.75 v -3.75 z m 16.797,0 v 35 h 3.75 l 8.75,-21.64 v 21.64 h 5 v -35 h -3.555 l -8.945,23.282 v -23.282 z m 22.5,0 v 35 h 5 v -31.25 h 8.75 v -3.75 z m 16.328,0 v 35 h 5 v -35 z m 19.766,-0.351 c -1.606,0 -2.996,0.226 -4.172,0.683 -1.18,0.454 -2.141,1.071 -2.879,1.856 -0.746,0.777 -1.336,1.773 -1.777,2.988 -0.446,1.207 -0.754,2.485 -0.918,3.828 -0.172,1.34 -0.254,2.883 -0.254,4.629 v 8.867 c 0,8.567 3.398,12.848 10.195,12.852 1.625,-0.004 3.035,-0.246 4.238,-0.734 1.196,-0.489 2.168,-1.204 2.91,-2.137 0.743,-0.942 1.301,-2.039 1.68,-3.293 0.375,-1.258 0.598,-2.711 0.664,-4.363 0.012,-0.239 0.016,-0.598 0.02,-1.075 h -5 v 1.055 c -0.016,0.817 -0.059,1.524 -0.129,2.117 -0.071,0.59 -0.203,1.172 -0.391,1.75 -0.191,0.571 -0.445,1.035 -0.769,1.395 -0.329,0.355 -0.762,0.644 -1.301,0.859 -0.539,0.215 -1.18,0.321 -1.922,0.324 -1.016,-0.003 -1.875,-0.187 -2.57,-0.558 -0.7,-0.371 -1.231,-0.914 -1.602,-1.621 -0.371,-0.711 -0.637,-1.492 -0.789,-2.344 -0.16,-0.855 -0.238,-1.848 -0.234,-2.977 v -11.25 c -0.004,-0.836 0.023,-1.586 0.078,-2.257 0.051,-0.672 0.136,-1.356 0.261,-2.051 0.122,-0.695 0.305,-1.297 0.547,-1.805 0.239,-0.508 0.539,-0.969 0.899,-1.379 0.359,-0.41 0.808,-0.722 1.347,-0.937 0.54,-0.215 1.161,-0.321 1.868,-0.321 0.832,0 1.554,0.161 2.168,0.489 0.609,0.32 1.093,0.742 1.453,1.258 0.355,0.515 0.64,1.167 0.851,1.964 0.207,0.789 0.344,1.578 0.418,2.364 0.071,0.777 0.11,1.668 0.11,2.675 v 1.25 h -5 v 3.711 h 10 v -17.461 h -3.75 l -1.25,3.75 c -0.977,-2.734 -2.645,-4.101 -5,-4.101 z m 14.062,0.351 v 35 h 5 v -15 h 8.75 v 15 h 5 v -35 h -5 v 16.25 h -8.75 v -16.25 z m 27.481,0 v 30.547 h -6.25 v 4.453 h 17.5 v -4.453 h -6.25 v -30.547 z" />
+                </g>
+            </svg>
+        </td>
+        <td class='doc-title'>
+            {# Running header. The certificate number is per-part and so lives
+               in the body, not here - WeasyPrint cannot vary a running header
+               between page groups. #}
+            <div class='kicker'>{% trans "Certificate of Conformity" %}</div>
+        </td>
+    </tr>
+</table>
+<div class='rule'></div>
+{% endblock header_content %}
+
+{% block page_content %}
+
+{# One certificate per unique part. The assembly drawing and its issue are
+   properties of the part, not of the shipment, so a mixed shipment cannot be
+   covered by a single declaration. Each block below is self-contained and
+   separately signed. #}
+{% regroup allocations.all|dictsort:"line.part.pk" by line.part as part_groups %}
+
+{% for group in part_groups %}
+<div class='cert'>
+
+<div class='cert-no'>
+    {# Certificate number: sales order - shipment - sequence. The sequence
+       distinguishes the per-part certificates within one despatch. #}
+    <span class='eyebrow'>{% trans "Certificate No." %}</span>
+    <span class='of'>{% blocktrans with n=forloop.counter t=part_groups|length %}Certificate {{ n }} of {{ t }}{% endblocktrans %}</span>
+    <div class='ref-chip mono'>{{ order.reference }}-{{ shipment.reference }}-{{ forloop.counter|stringformat:"02d" }}</div>
+</div>
+
+<table class='parties'>
+    <tr>
+        <td>
+            {# Airbus A1505 3.2.1(b)(ii) requires the address of the
+               manufacturing site, not the registered office. (iii) requires a
+               CAGE code where relevant - add below if BLINKENLIGHT holds one. #}
+            <div class='eyebrow'>{% trans "Manufactured by" %}</div>
+            <div class='party-name'>BLINKENLIGHT Ltd</div>
+            <div class='party-body'>
+                Unit 309 The Pill Box<br>
+                115 Coventry Road<br>
+                London E2 6GH<br>
+                United Kingdom
+            </div>
+            <div class='party-contact'>
+                info@blinkenlight.co.uk<br>
+                {% trans "Company No." %} 13110356<br>
+                {% trans "VAT" %} GB368918147
+            </div>
+        </td>
+        <td>
+            <div class='eyebrow'>{% trans "Customer" %}</div>
+            {% if order.customer %}
+                <div class='party-name'>{{ order.customer.name }}</div>
+                <div class='party-body'>
+                    {% if address %}
+                        {{ address.line1 }}<br>
+                        {% if address.line2 %}{{ address.line2 }}<br>{% endif %}
+                        {{ address.postal_code }} {{ address.postal_city }}<br>
+                        {{ address.country }}
+                    {% elif order.customer.primary_address %}
+                        {{ order.customer.primary_address.line1 }}<br>
+                        {% if order.customer.primary_address.line2 %}{{ order.customer.primary_address.line2 }}<br>{% endif %}
+                        {{ order.customer.primary_address.postal_code }} {{ order.customer.primary_address.postal_city }}<br>
+                        {{ order.customer.primary_address.country }}
+                    {% endif %}
+                </div>
+                <div class='party-contact'>
+                    {% if order.contact %}{{ order.contact.name }}<br>{% endif %}
+                    {% if order.customer.email %}{{ order.customer.email }}{% endif %}
+                </div>
+            {% else %}
+                <div class='party-body'>{% trans "Customer was deleted" %}</div>
+            {% endif %}
+        </td>
+        <td class='col-meta'>
+            <div class='meta'>
+                <table>
+                    <tr>
+                        <td class='k'>{% trans "Customer order" %}</td>
+                        <td class='v mono'>{{ order.customer_reference|default:"—" }}</td>
+                    </tr>
+                    <tr>
+                        {# Purchase order line item is a near-universal field
+                           across prime supplier requirements. Each certificate
+                           covers one part, so one line item. VERIFY: the field
+                           name on SalesOrderLineItem. #}
+                        <td class='k'>{% trans "PO line" %}</td>
+                        <td class='v mono'>{{ group.list.0.line.reference|default:"—" }}</td>
+                    </tr>
+                    <tr>
+                        <td class='k'>{% trans "Sales order" %}</td>
+                        <td class='v mono'>{{ order.reference|default:"—" }}</td>
+                    </tr>
+                    <tr>
+                        <td class='k'>{% trans "Shipment" %}</td>
+                        <td class='v mono'>{{ shipment.reference|default:"—" }}</td>
+                    </tr>
+                    <tr>
+                        <td class='k'>{% trans "Despatch date" %}</td>
+                        <td class='v mono'>{{ shipment.shipment_date|date:"j M Y"|default:"—" }}</td>
+                    </tr>
+                    <tr>
+                        <td class='k'>{% trans "Consignment" %}</td>
+                        <td class='v mono'>{{ shipment.tracking_number|default:"—" }}</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div class='section-label'>{% trans "Product Supplied" %}</div>
+
+{# Part identity is stated once for the certificate, not per row: every row in
+   this table is the same part. The part number is printed as ordered so it
+   reconciles against the customer purchase order line.
+
+   InvenTree field mapping: Name = customer part number, IPN = assembly drawing
+   number, Revision = drawing issue. #}
+<table class='part-id'>
+    <tr>
+        <td>
+            <div class='eyebrow'>{% trans "Part number" %}</div>
+            <div class='party-name mono'>{{ group.grouper.name|default:"—" }}</div>
+        </td>
+        <td>
+            <div class='eyebrow'>{% trans "Description" %}</div>
+            <div class='party-body'>{{ group.grouper.description|default:"—" }}</div>
+        </td>
+        <td class='num'>
+            <div class='eyebrow'>{% trans "Total quantity" %}</div>
+            <div class='party-name mono'>{{ group.list|length }}</div>
+        </td>
+    </tr>
+</table>
+
+<table class='lines'>
+    <thead>
+        <tr>
+            <th>{% trans "Item" %}</th>
+            <th>{% trans "Serial No. / Batch" %}</th>
+            <th class='num'>{% trans "Qty" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for allocation in group.list %}
+        <tr>
+            <td class='num mono'>{{ forloop.counter }}</td>
+            <td class='mono'>
+                {% if allocation.item.serial %}
+                    {{ allocation.item.serial }}
+                {% elif allocation.item.batch %}
+                    {% trans "Batch" %} {{ allocation.item.batch }}
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+            <td class='num mono'>{% decimal allocation.quantity %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# Statement of conformity. Wording follows Airbus general quality requirements
+   for standalone Purchase Order, requirement A1505 / 05.5013.D 3.2.1(b)(xi),
+   which permits this form of words or equivalent. Do not reword without
+   checking that clause. #}
+<div class='declaration'>
+    <span class='h'>{% trans "Statement of Conformity" %}</span>
+    {% blocktrans %}BLINKENLIGHT Ltd hereby declares that the delivered Products comply with the applicable requirements, specifications, drawings, regulations and standards, and have been successfully tested and verified.{% endblocktrans %}
+</div>
+
+<div class='refs'>
+    <div class='section-label'>{% trans "Referenced Documents" %}</div>
+    <table>
+        <tr>
+            <td class='k'>{% trans "Assembly drawing" %}</td>
+            <td class='mono'>
+                {{ group.grouper.IPN|default:"—" }}{% if group.grouper.revision %} {% trans "Issue" %} {{ group.grouper.revision }}{% endif %}
+            </td>
+        </tr>
+        <tr>
+            {# Airbus Canada QMS-09-01 8.6.2 requires configuration identity as
+               part number, dash number and modification status built to. The
+               drawing title block carries a "MODIFICATION No." field; state it,
+               or "None" where the drawing carries no modification. #}
+            <td class='k'>{% trans "Modification status" %}</td>
+            <td class='mono'>{% trans "None" %}</td>
+        </tr>
+        <tr>
+            <td class='k'>{% trans "Test procedure" %}</td>
+            <td class='mono'>—</td>
+        </tr>
+        <tr>
+            <td class='k'>{% trans "Test report" %}</td>
+            <td class='mono'>—</td>
+        </tr>
+        <tr>
+            {# Airbus A1505 3.2.1(b)(ix): description and status of work
+               performed. For build-to-print manufacture this is the build
+               and test activity carried out against the referenced package. #}
+            <td class='k'>{% trans "Work performed" %}</td>
+            <td>{% trans "Manufacture, inspection and test to the referenced drawing issue and test procedure." %}</td>
+        </tr>
+        <tr>
+            {# Airbus A1505 3.2.1(b)(x): conformity details or remarks -
+               nonconformities affecting the product, concessions, expiry date,
+               life limitation. Print "None" rather than leaving blank. #}
+            <td class='k'>{% trans "Conformity details / remarks" %}</td>
+            <td>{% trans "None" %}</td>
+        </tr>
+        <tr>
+            <td class='k'>{% trans "Country of origin" %}</td>
+            {# NEEDS DECISION: whether origin is stated here or on a separate
+               certificate, and how it is determined per part. #}
+            <td class='mono'>—</td>
+        </tr>
+    </table>
+</div>
+
+{# Signature line is left blank for wet signature or an inserted signature
+   image; the printed name and position identify the signatory regardless. #}
+<table class='sign'>
+    <tr>
+        <td style='width:50%;'>
+            <div class='line'></div>
+            <div class='cap'>{% trans "Signed" %}</div>
+            <div class='val'>Patrick Coleman</div>
+            <div class='item-sub'>{% trans "Technical Director" %}</div>
+        </td>
+        <td style='width:25%;'>
+            <div class='line'></div>
+            <div class='cap'>{% trans "Date" %}</div>
+            <div class='val mono'>{{ shipment.shipment_date|date:"j M Y"|default:"—" }}</div>
+        </td>
+        <td style='width:25%;'></td>
+    </tr>
+</table>
+
+<div class='notes'>
+    <span class='h'>{% trans "Notes" %}</span>
+    <ol>
+        <li>{% blocktrans %}This certificate relates only to the items and quantities listed above.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Serial numbers identify individual units; batch codes identify the manufacturing lot from which non-serialised items were drawn.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Where a despatch contains more than one part number, a separate certificate is issued for each.{% endblocktrans %}</li>
+    </ol>
+</div>
+
+</div>{# .cert #}
+{% endfor %}
+
+{% endblock page_content %}
+
+{# blank the base order template's version / date margin-box footers so they
+   don't collide with the branded footer below #}
+{% block bottom_left %}{% endblock bottom_left %}
+{% block bottom_center %}{% endblock bottom_center %}
+
+{% block footer_content %}
+<div class='po-foot'>
+    BLINKENLIGHT Ltd
+    <span class='sep'>|</span> {% trans "Company No." %} 13110356
+    <span class='sep'>|</span> Unit 309 The Pill Box, 115 Coventry Road, London E2 6GH
+</div>
+{% endblock footer_content %}
